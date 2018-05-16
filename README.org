@@ -22,9 +22,11 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="img/88x31.png" /></a>
 #+end_html
 
-en: I keep here the source code of my talks in the [[http://orgmode.org][ORG]] format.
-br: Eu matenho aqui o código fonte de minhas intervenções, no formato [[http://orgmode.org][ORG]].
-fr: Ici, je mantiens le code source de mes presentations, au format  [[http://orgmode.org][ORG]].
+Welcome. Seja bemvinda(o). Soyez le(a) bienvenu(e).
+
+- en: I keep here the source code of my talks in the [[http://orgmode.org][ORG]] format.
+- br: Eu matenho aqui o código fonte de minhas intervenções, no formato [[http://orgmode.org][ORG]].
+- fr: Ici, je mantiens le code source de mes presentations, au format  [[http://orgmode.org][ORG]].
 
 ** 2018
 
