@@ -30,9 +30,9 @@ Welcome. Seja bemvinda(o). Soyez le(a) bienvenu(e).
 
 ** 2018
 
-- May 15th, 2018: [[./2018_CienciaLivre/ILEA_CTL_2018.org][Ensino Aberto e Reprodutibilidade na Ciência]]. Ciclo
+- May 15th, 2018: [[./2018_CienciaLivre/ILEA_CTL_2018.org][Ensino Aberto e Reprodutibilidade na Ciência]] ([[./2018_CienciaLivre/ILEA_CTL_2018.pdf][PDF]]). Ciclo
   de Conferências do ILEA -- Estudos Avançados em Ciências e
-  Humanidades. ILEA/UFRGS, Porto Alegre, Brazil. ([[./2018_CienciaLivre/ILEA_CTL_2018.pdf][em formato PDF]])
+  Humanidades. ILEA/UFRGS, Porto Alegre, Brazil.
 
 * Contato
 
