@@ -34,6 +34,10 @@ Welcome. Seja bemvinda(o). Soyez le(a) bienvenu(e).
   de Conferências do ILEA -- Estudos Avançados em Ciências e
   Humanidades. ILEA/UFRGS, Porto Alegre, Brazil.
 
+** Previous presentations
+
+Check http://www.inf.ufrgs.br/~schnorr/talks.html.
+
 * Contato
 
 - [[http://www.inf.ufrgs.br/~schnorr][Prof. Lucas (http://www.inf.ufrgs.br/~schnorr)]]
