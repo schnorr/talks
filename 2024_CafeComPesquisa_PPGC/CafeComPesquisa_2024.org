@@ -1,0 +1,560 @@
+# -*- mode: org -*-
+# -*- coding: utf-8 -*-
+#+startup: beamer
+#+STARTUP: overview
+#+STARTUP: indent
+#+TAGS: noexport(n)
+
+#+TITLE: Ciência de Dados e Alto Desempenho
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [10pt,xcolor=dvipsnames,presentation,aspectratio=169]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: \usepackage{subfigure}
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \usetheme{Madrid}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER:  %\usepackage[colorlinks=true,citecolor=pdfcitecolor,urlcolor=pdfurlcolor,linkcolor=pdflinkcolor,pdfborder={0 0 0}]{hyperref}
+#+LATEX_HEADER: \usepackage[round-precision=3,round-mode=figures,scientific-notation=true]{siunitx}
+#+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+#+LATEX_HEADER: \usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \AtBeginDocument{
+#+LATEX_HEADER:   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+#+LATEX_HEADER:   \definecolor{pdfcitecolor}{rgb}{0,0.6,0}
+#+LATEX_HEADER:   \definecolor{pdflinkcolor}{rgb}{0.6,0,0}
+#+LATEX_HEADER:   \definecolor{light}{gray}{.85}
+#+LATEX_HEADER:   \definecolor{vlight}{gray}{.95}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{appendixnumberbeamer}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{color,colortbl}
+#+LATEX_HEADER: \definecolor{gray98}{rgb}{0.98,0.98,0.98}
+#+LATEX_HEADER: \definecolor{gray20}{rgb}{0.20,0.20,0.20}
+#+LATEX_HEADER: \definecolor{gray25}{rgb}{0.25,0.25,0.25}
+#+LATEX_HEADER: \definecolor{gray16}{rgb}{0.161,0.161,0.161}
+#+LATEX_HEADER: \definecolor{gray60}{rgb}{0.6,0.6,0.6}
+#+LATEX_HEADER: \definecolor{gray30}{rgb}{0.3,0.3,0.3}
+#+LATEX_HEADER: \definecolor{bgray}{RGB}{248, 248, 248}
+#+LATEX_HEADER: \definecolor{amgreen}{RGB}{77, 175, 74}
+#+LATEX_HEADER: \definecolor{amblu}{RGB}{55, 126, 184}
+#+LATEX_HEADER: \definecolor{amred}{RGB}{228,26,28}
+#+LATEX_HEADER: \usepackage[procnames]{listings}
+#+LATEX_HEADER: \lstset{ %
+#+LATEX_HEADER:  backgroundcolor=\color{gray98},    % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+#+LATEX_HEADER:  basicstyle=\tt\prettysmall,      % the size of the fonts that are used for the code
+#+LATEX_HEADER:  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
+#+LATEX_HEADER:  breaklines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  showlines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  captionpos=b,                     % sets the caption-position to bottom
+#+LATEX_HEADER:  commentstyle=\color{gray30},      % comment style
+#+LATEX_HEADER:  extendedchars=true,               % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+#+LATEX_HEADER:  frame=single,                     % adds a frame around the code
+#+LATEX_HEADER:  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+#+LATEX_HEADER:  keywordstyle=\color{amblu},       % keyword style
+#+LATEX_HEADER:  procnamestyle=\color{amred},       % procedures style
+#+LATEX_HEADER:  language=C,             % the language of the code
+#+LATEX_HEADER:  numbers=none,                     % where to put the line-numbers; possible values are (none, left, right)
+#+LATEX_HEADER:  numbersep=5pt,                    % how far the line-numbers are from the code
+#+LATEX_HEADER:  numberstyle=\tiny\color{gray20}, % the style that is used for the line-numbers
+#+LATEX_HEADER:  rulecolor=\color{gray20},          % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+#+LATEX_HEADER:  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+#+LATEX_HEADER:  showstringspaces=false,           % underline spaces within strings only
+#+LATEX_HEADER:  showtabs=false,                   % show tabs within strings adding particular underscores
+#+LATEX_HEADER:  stepnumber=2,                     % the step between two line-numbers. If it's 1, each line will be numbered
+#+LATEX_HEADER:  stringstyle=\color{amdove},       % string literal style
+#+LATEX_HEADER:  tabsize=2,                        % sets default tabsize to 2 spaces
+#+LATEX_HEADER:  % title=\lstname,                    % show the filename of files included with \lstinputlisting; also try caption instead of title
+#+LATEX_HEADER:  procnamekeys={call}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
+#+LATEX_HEADER: \newcommand{\quitesmall}{\fontsize{8}{10}\selectfont}
+
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\smileyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
+#+LATEX_HEADER: \def\frownyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
+#+LATEX_HEADER: \def\restoreitem{\setbeamertemplate{itemize item}[ball]}
+#+LATEX_HEADER: \def\smileysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
+#+LATEX_HEADER: \def\frownysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
+#+LATEX_HEADER: \def\restoresubitem{\setbeamertemplate{itemize subitem}[ball]}
+
+#+LaTeX: \urlstyle{sf}
+#+LaTeX: \let\alert=\structure
+#+LaTeX: \let\epsilon=\varepsilon
+#+LaTeX: \let\leq=\leqslant
+#+LaTeX: \let\geq=\geqslant 
+
+#+BEGIN_EXPORT LaTeX  
+{\setbeamertemplate{footline}{} 
+
+\author{Lucas Mello Schnorr \newline Instituto de Informática, UFRGS}
+
+\date{-- Café com Pesquisa do PPGC -- \newline PPGC/UFRGS, Porto Alegre, Brasil \newline 25 de janeiro de 2024, 13h \\\bigskip}
+
+\titlegraphic{\vspace{-.5cm
+    \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
+    \includegraphics[scale=1.6]{./logo/ufrgs2.png}}}
+
+\maketitle
+
+#+END_EXPORT
+
+* O maior supercomputador do mundo (de acordo com Top500 em 11/2023)
+
+# Processamento de Alto Desempenho (/High-Performance Computing/)
+
+
+#+begin_center
+Supercomputador /Frontier/
+
+(Oak Ridge National Laboratory, USA)
+#+end_center
+
+
+** Right                                                          :B_column:
+:PROPERTIES:
+:BEAMER_env: column
+:BEAMER_col: 0.7
+:END:
+
+- Custo estimado \to 600M USD ([[https://en.wikipedia.org/wiki/Frontier_(supercomputer)][fonte]], \approx33% LOA2023 de POA)
+- Power \to 22.7 MW (\approx15% da UH Passo Real)
+- 1.194 exaFLOPS (operações em ponto-flutuante por segundo)
+- Poder computacional
+  - 9472 AMD Epyc 7A53s "Trento" 64 core 2 GHz CPUs
+  - 37,888 Radeon Instinct MI250X GPUs
+
+#+latex: \vfill
+
+- 74 racks, cada um com 64 /blades/, cada blade com 2 nós
+  - 1 nó: 1 CPU (4 TBytes), 4 GPUs (cada uma com 128 GBytes)
+  - Todos os nós computacionais são iguais (recursos homogêneos)
+
+** Left                                                     :B_column:BMCOL:
+:PROPERTIES:
+:BEAMER_env: column
+:BEAMER_col: 0.3
+:END:
+
+#+attr_latex: :width \linewidth
+[[./logo/Frontier_Supercomputer.jpg]]
+
+* Parque Computacional de Alto Desempenho (PCAD) @ INF/UFRGS
+
+# #+attr_latex: :width .2\linewidth
+# [[./logo/Top500_logo.png]]
+
+Site: https://gppd-hpc.inf.ufrgs.br/
+
+Possui aproximadamente 40 nós: 1000+ núcleos de CPU e 100.000+ de GPU
+- Recursos heterogêneos (detalhamento das configurações)
+
+#+attr_latex: :width .6\linewidth
+[[./img/fotos-schema.pdf]]
+
+Temos um GT (Grupo de Trabalho) \to Formamos alunos no gerenciamento da plataforma
+
+* Inúmeros desafios para empregar eficientemente estas máquinas
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.1
+:END:
+
+#+attr_latex: :width \linewidth :center nil
+[[./img/escola-ppgc-50anos.png]] 
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.8
+:END:
+
+*(1) Pensamento computacional paralelo*
+
+https://doi.org/10.5753/sbc.13058.5
+
+Cap 3: Pensamento Computacional Paralelo: Desafios do Presente e
+do Futuro
+
+** Anula                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \pause
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_opt: t
+:BEAMER_col: 0.6
+:END:
+
+#+latex: \vspace{.2cm}
+
+*(2) Balanceamento de carga computacional*
+- Dividir corretamente a carga de trabalho
+- Mais complexo em máquinas heterogêneas @@latex:\pause\vfill@@
+
+*(3) Escolha do modelo de programação paralela adequado*
+- Tradicional: MPI/OpenMP/CUDA
+- Modelos mais abstratos baseado em grafo de tarefas (OpenMP Tasks, StarPU, ...) @@latex:\pause@@
+
+
+*** Reflexões importantes                                  :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+#+begin_center
+Estou usando adequadamente? Será que poderia ser melhor?
+
+@@latex: \pause@@
+
+#+end_center
+  
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_opt: t
+:BEAMER_col: 0.39
+:END:
+
+#+begin_center
+*Análise de desempenho*
+#+end_center
+
+#+attr_latex: :width .35\linewidth
+[[./img/raj.jpg]]
+
+#+begin_center
+Dica de disciplina PPGC: CMP223
+
+Computer System Performance Analysis
+
+Prof. Luciano Gaspary
+#+end_center
+
+* Observação do comportamento de aplicações paralelas
+
+#+begin_center
+Existem basicamente duas técnicas
+#+end_center
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+
+*** /Profiling/                                              :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+Perfilamento periódico
+- Fornece uma visão geral com baixo custo
+
+#+attr_latex: :width .7\linewidth
+[[./img/flame-graph.png]]
+
+#+latex: \pause
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+
+*** /Tracing/                                                :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+Rastreamento de eventos importantes
+- Habilita reconstruir comportamento
+
+#+attr_latex: :width \linewidth
+[[./img/starvz-gantt.png]]
+
+Volume de dados consequente (/Big Data/)
+- Técnicas de ciência de dados
+- Visualização de dados
+
+** Anula                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+latex: \vfill
+
+* Ciência de dados para análise de aplicações paralelas
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+*** Python                                                 :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+Pandas + NumPy + Dask + PySpark
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+*** R                                                      :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+Tidyverse + ggplot2 + ...
+
+** Unica                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \vspace{1cm}
+
+*** starvz: R-Based Visualization Techniques for Task-Based Applications :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+# - R 90.0%, Shell 4.4%, C++ 3.3%, C 2.2%, Dockerfile 0.1%
+- (dev) https://github.com/schnorr/starvz | (release) https://CRAN.R-project.org/package=starvz
+- Técnicas de visualização de dados focada na semântica da aplicação paralela
+
+#+attr_latex: :width .7\linewidth
+[[./img/kchart.png]]
+  
+* Linhas de Pesquisa e Contato
+** Computação de Alto Desempenho e Sistemas Distribuídos :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+Área de Concentração: _Sistemas de Computação_ \to Arthur Francisco
+Lorenzon, Claudio Fernando Resin Geyer, *Lucas Mello Schnorr*, Philippe
+Olivier Alexandre Navaux
+
+** Mineração, Integração e Análise de Dados     :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+Área de Concentração: _Ciência de Dados_ e Engenharia de Software \to João
+Luiz Dihl Comba, Jose Palazzo Moreira De Oliveira, Joel Luis
+Carbonera, Karin Becker, *Lucas Mello Schnorr*, Mara Abel, Mariana
+Recamonde Mendoza, Renata De Matos Galante, Viviane Pereira Moreira
+
+** Contato                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.8
+:END:
+
+#+latex: \pause
+
+#+begin_center
+Obrigado pelo atenção!
+#+end_center
+
+#+begin_center
+schnorr@inf.ufrgs.br
+#+end_center
+
+** QrCode                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+#+attr_latex: :width \linewidth
+[[./img/qrcode.png]]
+
+* OLD                                                              :noexport:
+** Contexto
+*** Apresentação
+
+Prof. Lucas M. Schnorr (INF/UFRGS)
++ Prédio 43425, Sala 202
++ [[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
++ Email: schnorr@inf.ufrgs.br
++ Twitter: [[http://twitter.com/lucasschnorr/][@lucasschnorr]]
+
+#+latex: \vfill
+
+Áreas de interesse em pesquisa na área da Ciência da Computação
++ Processamento de Alto Desempenho (/High Performance Computing/)
++ Análise de Dados (/Data Science/)
+
+Código de pesquisa em Software Livre (Licenças GPLv3)
++ https://github.com/schnorr/
+
+*** Plano
+
+- Ensino Aberto
+  - Motivação
+  - Como funciona
+  - Privacidade
+  - Resultados
+
+#+latex: \vfill
+
+- Reprodutibilidade Experimental na Ciência
+  - Caderno de anotações
+  - Estudos de caso
+  - Repositório de dados abertos
+
+** Ensino Aberto
+*** Ensino Aberto: Motivação e Estratégia Proposta
+
+Experiência de ensino (2013 -- 2017/1) com Moodle (do INF e da UFRGS)
+- Difícil automatização de processos \to baixa produtividade
+- Apenas para matriculados (mediante login com senha)
+- Inexistência de rastreamento de mudanças
+- Como migrar para outra plataforma?
+
+#+latex: \vfill\pause
+
+Emprego exclusivo de ferramentas livres para o ensino
+- Material em formato aberto, código fonte de exemplos, de figuras
+  - Slides em ORG (https://orgmode.org/): texto puro, marcação mínima @@latex:\pause@@
+- GIT (https://git-scm.com/): histórico de mudanças
+- Plataformas de hospedagem de código-fonte (Github/Gitlab/Bitbucket/...)  @@latex:\pause@@
+- Código de gerenciamento da disciplina (cronograma, chamada, avaliação)
+  - Linguagem R (https://www.r-project.org/)
+
+*** Como funciona: demonstração
+
+Duas disciplinas de graduação
+- Modelos de Linguagem de Programação (MLP) -- 5o Semestre \\
+  https://github.com/schnorr/mlp
+  - Exemplo de cronograma
+  - Conteúdo, Slides
+  - Atividades
+  - Avaliação @@latex:\pause@@
+- Compiladores (COMP) -- 6o Semestre \\
+  https://github.com/schnorr/comp
+  - Experiência de aula invertida \to Videos
+
+#+latex: \pause\vfill
+
+Uma disciplina de pós-graduação
+- Introdução ao Processamento de Alto Desempenho \\
+  https://github.com/schnorr/par
+
+*** Abordagem pública: e a privacidade dos alunos?
+
+A avaliação é pública
+- Grupos: identificador do grupo
+- Individual: uso de apenas três dígitos do cartão do aluno
+
+#+latex: \vfill\pause
+
+Objetivo: _Transparência na avaliação_
+- Trabalho em grupo
+- Questões de provas
+- Atividades de acompanhamento
+  
+*** Resultados da abordagem aberta no ensino
+
+- Registro de interações
+  - Próprios alunos identificam problemas; propõem correções
+  - Atualização do material se torna visível
+  - Tira-dúvidas com histórico
+
+- Disseminação do conhecimento para fora da universidade
+  - Caso de adoção em outras universidades
+  - Material em pt-br da disciplina
+
+** Reprodutibilidade Experimental na Ciência
+*** Reprodutibilidade na Ciência: Motivação e Proposta
+
+- Validação/verificação de resultados é peça fundamental do método científico
+  - Deve poder ser conduzida de maneira independente
+
+#+Latex: \vfill\pause
+
+- Anotações são fundamentais no processo de investigação
+- Todos utilizamos alguma forma de anotações de laboratório
+  - Um caderno? Folhas soltas, perfuradas?
+  - Arquivos em um computador? Em qual formato?
+  - Como manter os esquemas, desenhos, figuras, gráficos?
+
+#+Latex: \vfill\pause
+
+- Relação com o processo de reprodutibilidade
+  - Anotações estruturadas
+  - Dados disponíveis, abertos -- ``livres''
+
+*** Exemplos de emprego de anotações
+
+Em andamento
+
+1. Fenologia: estudo do ciclo periódico da flora/fauna
+   - Visualização de dados da fenologia
+     - https://github.com/schnorr/phenology/
+   - Demonstração do caderno público de anotações @@latex:\pause@@
+2. Dissertação de Gabriel Moro
+   - https://bitbucket.org/gbmoro/dissertacao_gbmoro
+
+#+latex: \vfill\pause
+
+Encerrados
+
+1. Análise de Aplicações Paralelas (Gitlab)
+   - https://gitlab.in2p3.fr/schnorr/ccpe2017 @@latex:\pause@@
+2. Balanceamento de Carga Computacional (Zenodo, com DOI)
+   - https://doi.org/10.5281/zenodo.200341
+
+*** Repositório de dados abertos
+
+Dados devem ser abertos, de livre acesso, perenes
+- Figshare: https://figshare.com/
+- Zenodo (EU/OpenAIRE, CERN): https://zenodo.org/
+- Gitlab@IN2P3 (/Inst. Nat. de phys. nucléaire et de phys. des particules/)
+  - GIT com suporte LFS (arquivos grandes)
+
+#+latex: \vfill\pause
+
+No Brasil e UFRGS:
+- Rede Nacional de Ensino e Pesquisa (RNP): FileSender (Dados não perenes)
+- Na UFRGS
+  - https://dados.ufrgs.br/ (como fazer /upload/ dos meus dados?)
+  - LUME (apenas para documentos textuais)
+
+*** Conclusão com algumas direções
+
+Prática
+
+- Anotações estruturadas são fundamentais; vários benefícios
+- Preferir um formato de texto puro (codificação UTF-8): ``txt''
+  - Editores de texto sofisticados: RStudio+Rmd, Emacs+ORG
+
+#+latex: \vfill\pause
+
+NSF (/National Science Foundation/, USA)
+- ``Today's Data, Tomorrow's Discoveries''
+- https://www.nsf.gov/pubs/2015/nsf15052/nsf15052.pdf
+European Comission (OpenAIRE)
+- https://www.openaire.eu/
+Agências de fomento brasileiras
+- Exigir política de dados /após a conclusão de projetos/
+- Perenização dos dados
+
+#+latex: \vfill\pause
+
+Propostas possíveis a nível institucional
+- UFRGS garante a perenização (gera um DOI)
+  - Abordagem evolutiva: gitlab@UFRGS
+  - Abordagem pontual: zenodo-like
+
+** Conclusão
+*** Obrigado pela atenção! Perguntas?
+
+#+Latex: \vfill
+#+BEGIN_CENTER
+Contato
+
+E-mail: schnorr@inf.ufrgs.br Site: http://www.inf.ufrgs.br/~schnorr
+
+#+END_CENTER
+  
