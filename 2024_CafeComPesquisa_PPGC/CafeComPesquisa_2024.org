@@ -107,15 +107,21 @@
 
 * O maior supercomputador do mundo (de acordo com Top500 em 11/2023)
 
-# Processamento de Alto Desempenho (/High-Performance Computing/)
+Processamento de Alto Desempenho (PAD) -- /High-Performance Computing/ (HPC)
 
+Área da computação que emprega computadores para resolver problemas
+grandes
+
+[[./img/applications.pdf]]
+
+
+#+latex: \pause
 
 #+begin_center
 Supercomputador /Frontier/
 
 (Oak Ridge National Laboratory, USA)
 #+end_center
-
 
 ** Right                                                          :B_column:
 :PROPERTIES:
@@ -126,7 +132,6 @@ Supercomputador /Frontier/
 - Custo estimado \to 600M USD ([[https://en.wikipedia.org/wiki/Frontier_(supercomputer)][fonte]], \approx33% LOA2023 de POA)
 - Power \to 22.7 MW (\approx15% da UH Passo Real)
 - 1.194 exaFLOPS (operações em ponto-flutuante por segundo)
-- Poder computacional
   - 9472 AMD Epyc 7A53s "Trento" 64 core 2 GHz CPUs
   - 37,888 Radeon Instinct MI250X GPUs
 
