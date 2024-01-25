@@ -8,7 +8,7 @@
 #+TITLE: Ciência de Dados e Alto Desempenho
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [10pt,xcolor=dvipsnames,presentation,aspectratio=169]
+#+LaTeX_CLASS_OPTIONS: [12pt,xcolor=dvipsnames,presentation,aspectratio=169]
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
 #+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
 #+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
@@ -95,7 +95,7 @@
 
 \author{Lucas Mello Schnorr \newline Instituto de Informática, UFRGS}
 
-\date{-- Café com Pesquisa do PPGC -- \newline PPGC/UFRGS, Porto Alegre, Brasil \newline 25 de janeiro de 2024, 13h \\\bigskip}
+\date{-- Café com Pesquisa do PPGC -- \newline PPGC/UFRGS, Porto Alegre, Brasil \newline 25 de janeiro de 2024, 13h \\\smallskip}
 
 \titlegraphic{\vspace{-.5cm
     \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
@@ -105,7 +105,7 @@
 
 #+END_EXPORT
 
-* O maior supercomputador do mundo (de acordo com Top500 em 11/2023)
+* O maior supercomputador do mundo (Top500 11/2023)
 
 Processamento de Alto Desempenho (PAD) -- /High-Performance Computing/ (HPC)
 
@@ -117,29 +117,28 @@ grandes
 
 #+latex: \pause
 
-#+begin_center
-Supercomputador /Frontier/
-
-(Oak Ridge National Laboratory, USA)
-#+end_center
-
 ** Right                                                          :B_column:
 :PROPERTIES:
 :BEAMER_env: column
 :BEAMER_col: 0.7
 :END:
 
-- Custo estimado \to 600M USD ([[https://en.wikipedia.org/wiki/Frontier_(supercomputer)][fonte]], \approx33% LOA2023 de POA)
-- Power \to 22.7 MW (\approx15% da UH Passo Real)
-- 1.194 exaFLOPS (operações em ponto-flutuante por segundo)
+
+Supercomputador /Frontier/
+
+(Oak Ridge National Laboratory, USA)
+
+
+# - Custo \to 600M USD ([[https://en.wikipedia.org/wiki/Frontier_(supercomputer)][fonte]], \approx33% LOA2023 de POA)
+# - Power \to 22.7 MW (\approx15% da UH Passo Real)
+- 1.194 exaFLOPS (operações PF por segundo)
   - 9472 AMD Epyc 7A53s "Trento" 64 core 2 GHz CPUs
   - 37,888 Radeon Instinct MI250X GPUs
 
 #+latex: \vfill
 
 - 74 racks, cada um com 64 /blades/, cada blade com 2 nós
-  - 1 nó: 1 CPU (4 TBytes), 4 GPUs (cada uma com 128 GBytes)
-  - Todos os nós computacionais são iguais (recursos homogêneos)
+  - 1 nó: 1 CPU (4TB), 4 GPUs (cada 128GB)
 
 ** Left                                                     :B_column:BMCOL:
 :PROPERTIES:
@@ -147,10 +146,10 @@ Supercomputador /Frontier/
 :BEAMER_col: 0.3
 :END:
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .95\linewidth
 [[./logo/Frontier_Supercomputer.jpg]]
 
-* Parque Computacional de Alto Desempenho (PCAD) @ INF/UFRGS
+* Parque Computacional de Alto Desempenho (PCAD) @ INF
 
 # #+attr_latex: :width .2\linewidth
 # [[./logo/Top500_logo.png]]
@@ -162,7 +161,7 @@ Possui aproximadamente 40 nós: 1000+ núcleos de CPU e 100.000+ de GPU
 #+attr_latex: :width .6\linewidth
 [[./img/fotos-schema.pdf]]
 
-Temos um Grupo de Trabalho (GT) \to Formamos alunos no gerenciamento da plataforma
+Temos um Grupo de Trabalho (GT) \to DevOps da plataforma
 - =gt-cluster-l@inf.ufrgs.br= (para mais informações)
 
 * Inúmeros desafios para empregar eficientemente estas máquinas
@@ -181,9 +180,8 @@ Temos um Grupo de Trabalho (GT) \to Formamos alunos no gerenciamento da platafor
 
 *(1) Pensamento computacional paralelo*
 
-https://doi.org/10.5753/sbc.13058.5
+https://doi.org/10.5753/sbc.13058.5 (Cap. 3)
 
-Cap 3: Pensamento Computacional Paralelo: Desafios do Presente e do Futuro
 - INF01008 (Prog. Distr. e Par.) e PPGC/CMP270 (Intr. HPC)
 
 ** Anula                                                   :B_ignoreheading:
@@ -201,20 +199,19 @@ Cap 3: Pensamento Computacional Paralelo: Desafios do Presente e do Futuro
 
 #+latex: \vspace{.2cm}
 
-*(2) Escolha do modelo de programação paralela adequado*
+*(2) Escolha do modelo de programação paralela*
 - Tradicional: MPI/OpenMP/CUDA
-- Modelos mais abstratos baseado em grafo de tarefas (OpenMP Tasks, StarPU, ...) @@latex:\pause\vfill@@
+- Modelos abstratos baseado em grafo de tarefas @@latex:\pause\vfill@@
 
-*(3) Balanceamento/escalonamento de carga computacional*
+*(3) Balanceamento de carga computacional*
 - Dividir corretamente a carga de trabalho
-- Mais complexo em máquinas heterogêneas @@latex:\pause@@
 
 *** Reflexão importante quando em produção                 :B_exampleblock:
 :PROPERTIES:
 :BEAMER_env: exampleblock
 :END:
 #+begin_center
-Estou usando adequadamente? Será que poderia ser melhor?
+Uso eficiente? Poderia ser melhor?
 
 @@latex: \pause@@
 
@@ -256,7 +253,8 @@ Existem basicamente duas técnicas
 :END:
 
 Perfilamento periódico
-- Fornece uma visão geral com baixo custo
+
+Visão geral com baixo custo
 
 #+attr_latex: :width .7\linewidth
 [[./img/flame-graph.png]]
@@ -273,7 +271,8 @@ Perfilamento periódico
 :BEAMER_env: exampleblock
 :END:
 Rastreamento de eventos importantes
-- Habilita reconstruir comportamento
+
+Habilita reconstruir comportamento
 
 #+attr_latex: :width \linewidth
 [[./img/starvz-gantt.png]]
@@ -291,6 +290,12 @@ Rastreamento de eventos importantes
 :END:
 Aplicação ExaGeoStat - Modelagem de dados geoestatísticos
 - https://github.com/ecrc/exageostat
+
+#+latex: \medskip
+
+\to _Qual a melhor distribuição em clusters heterogêneos?_
+
+#+latex: \medskip
 
 ** Right (Image)                                                     :BMCOL:
 :PROPERTIES:
@@ -368,10 +373,23 @@ https://r4ds.hadley.nz/
 :PROPERTIES:
 :BEAMER_env: block
 :END:
-- (dev) https://github.com/schnorr/starvz | (release) https://CRAN.R-project.org/package=starvz
-- Visualização de dados focada na semântica da aplicação paralela
 
-#+attr_latex: :width .35\linewidth
+**** Left                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+
+(release) https://CRAN.R-project.org/package=starvz
+
+Visualização de dados para análise de desempenho
+
+**** Right                                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+
+
+#+attr_latex: :width \linewidth
 [[./img/workflow-starvz.pdf]]
 
 * Visualização do comportamento da aplicação paralela (Exemplo)
@@ -407,19 +425,20 @@ Empregando StarVZ
 :BEAMER_env: alertblock
 :END:
 
-Área de Concentração: _Sistemas de Computação_ \to Arthur Francisco
-Lorenzon, Claudio Fernando Resin Geyer, *Lucas Mello Schnorr*, Philippe
-Olivier Alexandre Navaux
+#+latex: \small
+
+Arthur Lorenzon, Claudio Geyer, *Lucas Mello Schnorr*, Philippe Navaux
 
 ** Mineração, Integração e Análise de Dados                   :B_alertblock:
 :PROPERTIES:
 :BEAMER_env: alertblock
 :END:
 
-Área de Concentração: _Ciência de Dados_ e Engenharia de Software \to João
-Luiz Dihl Comba, Jose Palazzo Moreira De Oliveira, Joel Luis
-Carbonera, Karin Becker, *Lucas Mello Schnorr*, Mara Abel, Mariana
-Recamonde Mendoza, Renata De Matos Galante, Viviane Pereira Moreira
+#+latex: \small
+
+João Comba, Jose Palazzo, Joel Carbonera, Karin Becker, *Lucas Mello
+Schnorr*, Mara Abel, Mariana R. Mendoza, Renata Galante, Viviane
+Pereira Moreira
 
 ** Contato                                                           :BMCOL:
 :PROPERTIES:
