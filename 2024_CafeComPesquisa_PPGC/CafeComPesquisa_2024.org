@@ -376,11 +376,29 @@ https://r4ds.hadley.nz/
 
 * Visualização do comportamento da aplicação paralela (Exemplo)
 
-Fatoração Cholesky
-
-
-Empregando StarVZ
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+Fatoração Cholesky por blocos
 #+attr_latex: :width \linewidth :center nil
+[[./img/cholesky-code.png]]
+
+** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
+
+Grafo de tarefas que será escalonado na plataforma
+#+attr_latex: :width .8\linewidth :center nil
+[[./img/dag-5x5-crop-crop.pdf]]
+
+** Normal                                                  :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+Empregando StarVZ
+#+attr_latex: :width .9\linewidth :center nil
 [[./img/kchart.png]]
 
 * Linhas de Pesquisa e Contato
