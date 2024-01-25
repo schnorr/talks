@@ -91,7 +91,7 @@
 #+LaTeX: \let\geq=\geqslant 
 
 #+BEGIN_EXPORT LaTeX  
-{\setbeamertemplate{footline}{} 
+{%\setbeamertemplate{footline}{} 
 
 \author{Lucas Mello Schnorr \newline Instituto de Informática, UFRGS}
 
@@ -183,8 +183,8 @@ Temos um Grupo de Trabalho (GT) \to Formamos alunos no gerenciamento da platafor
 
 https://doi.org/10.5753/sbc.13058.5
 
-Cap 3: Pensamento Computacional Paralelo: Desafios do Presente e
-do Futuro
+Cap 3: Pensamento Computacional Paralelo: Desafios do Presente e do Futuro
+- INF01008 (Prog. Distr. e Par.) e PPGC/CMP270 (Intr. HPC)
 
 ** Anula                                                   :B_ignoreheading:
 :PROPERTIES:
@@ -201,16 +201,15 @@ do Futuro
 
 #+latex: \vspace{.2cm}
 
-*(2) Balanceamento de carga computacional*
-- Dividir corretamente a carga de trabalho
-- Mais complexo em máquinas heterogêneas @@latex:\pause\vfill@@
-
-*(3) Escolha do modelo de programação paralela adequado*
+*(2) Escolha do modelo de programação paralela adequado*
 - Tradicional: MPI/OpenMP/CUDA
-- Modelos mais abstratos baseado em grafo de tarefas (OpenMP Tasks, StarPU, ...) @@latex:\pause@@
+- Modelos mais abstratos baseado em grafo de tarefas (OpenMP Tasks, StarPU, ...) @@latex:\pause\vfill@@
 
+*(3) Balanceamento/escalonamento de carga computacional*
+- Dividir corretamente a carga de trabalho
+- Mais complexo em máquinas heterogêneas @@latex:\pause@@
 
-*** Reflexões importantes                                  :B_exampleblock:
+*** Reflexão importante quando em produção                 :B_exampleblock:
 :PROPERTIES:
 :BEAMER_env: exampleblock
 :END:
@@ -235,11 +234,9 @@ Estou usando adequadamente? Será que poderia ser melhor?
 [[./img/raj.jpg]]
 
 #+begin_center
-Dica de disciplina PPGC: CMP223
+PPGC/CMP223
 
-Computer System Performance Analysis
-
-Prof. Luciano Gaspary
+(Comp. Syst. Perf. Analysis)
 #+end_center
 
 * Observação do comportamento de aplicações paralelas
@@ -281,15 +278,46 @@ Rastreamento de eventos importantes
 #+attr_latex: :width \linewidth
 [[./img/starvz-gantt.png]]
 
-Volume de dados consequente (/Big Data/)
-- Técnicas de ciência de dados
-- Visualização de dados
-
 ** Anula                                                   :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
 #+latex: \vfill
+
+* Um exemplo do grande volume de dados (/Big Data/)
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.7
+:END:
+Aplicação ExaGeoStat - Modelagem de dados geoestatísticos
+- https://github.com/ecrc/exageostat
+
+** Right (Image)                                                     :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+
+#+attr_latex: :width \linewidth
+[[./img/exageostat.jpeg]]
+
+** Back to normal                                    :B_ignoreheading:BMCOL:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \pause\vfill
+
+Cuidadosamente configurando o rastreamento para um determinada entrada
+- 500MBytes por nó computacional a cada 3 iterações
+- Uma execução completa tem aproximadamente 180 iterações
+  - Usando 128 nós do Supercomputador SDumont: \approx4Tbytes de dados
+
+** Como analisar esses dados?                               :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+- A aplicação se comportou adequadamente?
+- Foi eficiente no uso dos recursos?
 
 * Ciência de dados para análise de aplicações paralelas
 ** Left                                                              :BMCOL:
@@ -301,7 +329,15 @@ Volume de dados consequente (/Big Data/)
 :BEAMER_env: exampleblock
 :END:
 
-Pandas + NumPy + Dask + PySpark
+Python for Data Analysis, 3E
+
+https://wesmckinney.com/book/
+
+#+begin_export latex
+\includegraphics[width=1.6cm]{./img/pandas.png}\hfill%
+\includegraphics[width=2cm]{./img/numpy.png}\hfill%
+\includegraphics[width=2cm]{./img/dask.png}
+#+end_export
 
 ** Right                                                             :BMCOL:
 :PROPERTIES:
@@ -312,39 +348,54 @@ Pandas + NumPy + Dask + PySpark
 :BEAMER_env: exampleblock
 :END:
 
-Tidyverse + ggplot2 + ...
+R for Data Science, 2E \approx tidyverse
+
+https://r4ds.hadley.nz/
+
+#+begin_export latex
+\includegraphics[width=.9\linewidth]{./img/tidyverse.pdf}
+#+end_export
 
 ** Unica                                                   :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
 
-#+latex: \vspace{1cm}
+#+latex: \pause
+
 
 *** starvz: R-Based Visualization Techniques for Task-Based Applications :B_block:
 :PROPERTIES:
 :BEAMER_env: block
 :END:
-# - R 90.0%, Shell 4.4%, C++ 3.3%, C 2.2%, Dockerfile 0.1%
 - (dev) https://github.com/schnorr/starvz | (release) https://CRAN.R-project.org/package=starvz
-- Técnicas de visualização de dados focada na semântica da aplicação paralela
+- Visualização de dados focada na semântica da aplicação paralela
 
-#+attr_latex: :width .7\linewidth
+#+attr_latex: :width .35\linewidth
+[[./img/workflow-starvz.pdf]]
+
+* Visualização do comportamento da aplicação paralela (Exemplo)
+
+Fatoração Cholesky
+
+
+Empregando StarVZ
+#+attr_latex: :width \linewidth :center nil
 [[./img/kchart.png]]
-  
+
 * Linhas de Pesquisa e Contato
-** Computação de Alto Desempenho e Sistemas Distribuídos :B_block:
+** Computação de Alto Desempenho e Sistemas Distribuídos      :B_alertblock:
 :PROPERTIES:
-:BEAMER_env: block
+:BEAMER_env: alertblock
 :END:
 
 Área de Concentração: _Sistemas de Computação_ \to Arthur Francisco
 Lorenzon, Claudio Fernando Resin Geyer, *Lucas Mello Schnorr*, Philippe
 Olivier Alexandre Navaux
 
-** Mineração, Integração e Análise de Dados     :B_block:
+** Mineração, Integração e Análise de Dados                   :B_alertblock:
 :PROPERTIES:
-:BEAMER_env: block
+:BEAMER_env: alertblock
 :END:
 
 Área de Concentração: _Ciência de Dados_ e Engenharia de Software \to João
@@ -360,7 +411,7 @@ Recamonde Mendoza, Renata De Matos Galante, Viviane Pereira Moreira
 #+latex: \pause
 
 #+begin_center
-Obrigado pelo atenção!
+Obrigado pela atenção!
 #+end_center
 
 #+begin_center
