@@ -155,15 +155,15 @@ Supercomputador /Frontier/
 # #+attr_latex: :width .2\linewidth
 # [[./logo/Top500_logo.png]]
 
-Site: https://gppd-hpc.inf.ufrgs.br/
+Site: =https://gppd-hpc.inf.ufrgs.br/=
 
 Possui aproximadamente 40 nós: 1000+ núcleos de CPU e 100.000+ de GPU
-- Recursos heterogêneos (detalhamento das configurações)
 
 #+attr_latex: :width .6\linewidth
 [[./img/fotos-schema.pdf]]
 
-Temos um GT (Grupo de Trabalho) \to Formamos alunos no gerenciamento da plataforma
+Temos um Grupo de Trabalho (GT) \to Formamos alunos no gerenciamento da plataforma
+- =gt-cluster-l@inf.ufrgs.br= (para mais informações)
 
 * Inúmeros desafios para empregar eficientemente estas máquinas
 ** Right                                                             :BMCOL:
