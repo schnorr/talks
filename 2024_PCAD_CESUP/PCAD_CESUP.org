@@ -337,6 +337,10 @@ Slurm é peça fundamental para gerenciar a heterogeneidade
 #+end_export
 
 * Utilização
+** Uso para experimentos / protótipo
+
+
+
 * Pessoas envolvidas
 ** Pessoal
 *** Right                                                             :BMCOL:
@@ -397,6 +401,24 @@ Ex-atuantes fundamentais
 - Matheus Serpa
 
 * Tendências e Conclusão
+** Tendências
+
+Recentemente
+- Enfoque em aceleradores muito forte
+  - Vários nós são ``substituídos'' por poucas GPUs
+- Aceleradoras tipo server extremamente caras
+  - Resurgimento de gabinetes ``full-tower'' com 1x, 2x até 4x aceleradoras
+- Cada vez mais heterogeneidade nas configurações
+  - Nós ``AMD'' ou ``ARM'' com processador/acelerador
+
+#+latex: \pause\vfill
+
+Futuro
+- Necessidade de /clusters/ maiores de aceleradoras
+  - Atualmente temos a partição ``tupi'' (6 nós, cada uma com uma RTX4090)
+  - Usuários usam apenas 1 nó c/ GPU, quando poderiam distribuir em vários nós com GPU
+- Perspectiva da chegada de nós DGX H100
+
 ** Contato
 *** Contato                                                          :BMCOL:
 :PROPERTIES:
