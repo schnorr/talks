@@ -1,118 +1,407 @@
-# -*- mode: org -*-
+# -*- org-export-babel-evaluate: nil -*-
 # -*- coding: utf-8 -*-
-#+startup: beamer
-#+STARTUP: overview
-#+STARTUP: indent
-#+TAGS: noexport(n)
+# -*- mode: org -*-
+#+startup: beamer overview indent
 
 #+TITLE: Parque Computacional de Alto Desempenho (PCAD)
-#+SUBTITLE: Grupo de Processamento Paralelo e Distribuído (GPPD)
+#+SUBTITLE:  Grupo de Processamento Paralelo e Distribuído (GPPD-HPC)
+#+AUTHOR: Lucas Mello Schnorr
+#+EMAIL: schnorr@inf.ufrgs.br
+#+DATE: Instituto de Informática, UFRGS
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [12pt,xcolor=dvipsnames,presentation,aspectratio=169]
-#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
-#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
-#+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
-#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
-#+LATEX_HEADER: \usepackage{subfigure}
-#+LATEX_HEADER: \usepackage{fancyvrb}
-#+LATEX_HEADER: \usetheme{Madrid}
-#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
-#+LATEX_HEADER:  %\usepackage[colorlinks=true,citecolor=pdfcitecolor,urlcolor=pdfurlcolor,linkcolor=pdflinkcolor,pdfborder={0 0 0}]{hyperref}
-#+LATEX_HEADER: \usepackage[round-precision=3,round-mode=figures,scientific-notation=true]{siunitx}
-#+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
-#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
-#+LATEX_HEADER: \usepackage{DejaVuSansMono}
-#+LATEX_HEADER: \AtBeginDocument{
-#+LATEX_HEADER:   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
-#+LATEX_HEADER:   \definecolor{pdfcitecolor}{rgb}{0,0.6,0}
-#+LATEX_HEADER:   \definecolor{pdflinkcolor}{rgb}{0.6,0,0}
-#+LATEX_HEADER:   \definecolor{light}{gray}{.85}
-#+LATEX_HEADER:   \definecolor{vlight}{gray}{.95}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \usepackage{appendixnumberbeamer}
-#+LATEX_HEADER: \usepackage{relsize}
-#+LATEX_HEADER: \usepackage{color,colortbl}
-#+LATEX_HEADER: \definecolor{gray98}{rgb}{0.98,0.98,0.98}
-#+LATEX_HEADER: \definecolor{gray20}{rgb}{0.20,0.20,0.20}
-#+LATEX_HEADER: \definecolor{gray25}{rgb}{0.25,0.25,0.25}
-#+LATEX_HEADER: \definecolor{gray16}{rgb}{0.161,0.161,0.161}
-#+LATEX_HEADER: \definecolor{gray60}{rgb}{0.6,0.6,0.6}
-#+LATEX_HEADER: \definecolor{gray30}{rgb}{0.3,0.3,0.3}
-#+LATEX_HEADER: \definecolor{bgray}{RGB}{248, 248, 248}
-#+LATEX_HEADER: \definecolor{amgreen}{RGB}{77, 175, 74}
-#+LATEX_HEADER: \definecolor{amblu}{RGB}{55, 126, 184}
-#+LATEX_HEADER: \definecolor{amred}{RGB}{228,26,28}
-#+LATEX_HEADER: \usepackage[procnames]{listings}
-#+LATEX_HEADER: \lstset{ %
-#+LATEX_HEADER:  backgroundcolor=\color{gray98},    % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-#+LATEX_HEADER:  basicstyle=\tt\prettysmall,      % the size of the fonts that are used for the code
-#+LATEX_HEADER:  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
-#+LATEX_HEADER:  breaklines=true,                  % sets automatic line breaking
-#+LATEX_HEADER:  showlines=true,                  % sets automatic line breaking
-#+LATEX_HEADER:  captionpos=b,                     % sets the caption-position to bottom
-#+LATEX_HEADER:  commentstyle=\color{gray30},      % comment style
-#+LATEX_HEADER:  extendedchars=true,               % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-#+LATEX_HEADER:  frame=single,                     % adds a frame around the code
-#+LATEX_HEADER:  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-#+LATEX_HEADER:  keywordstyle=\color{amblu},       % keyword style
-#+LATEX_HEADER:  procnamestyle=\color{amred},       % procedures style
-#+LATEX_HEADER:  language=C,             % the language of the code
-#+LATEX_HEADER:  numbers=none,                     % where to put the line-numbers; possible values are (none, left, right)
-#+LATEX_HEADER:  numbersep=5pt,                    % how far the line-numbers are from the code
-#+LATEX_HEADER:  numberstyle=\tiny\color{gray20}, % the style that is used for the line-numbers
-#+LATEX_HEADER:  rulecolor=\color{gray20},          % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-#+LATEX_HEADER:  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-#+LATEX_HEADER:  showstringspaces=false,           % underline spaces within strings only
-#+LATEX_HEADER:  showtabs=false,                   % show tabs within strings adding particular underscores
-#+LATEX_HEADER:  stepnumber=2,                     % the step between two line-numbers. If it's 1, each line will be numbered
-#+LATEX_HEADER:  stringstyle=\color{amdove},       % string literal style
-#+LATEX_HEADER:  tabsize=2,                        % sets default tabsize to 2 spaces
-#+LATEX_HEADER:  % title=\lstname,                    % show the filename of files included with \lstinputlisting; also try caption instead of title
-#+LATEX_HEADER:  procnamekeys={call}
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
-#+LATEX_HEADER: \newcommand{\quitesmall}{\fontsize{8}{10}\selectfont}
+#+LaTeX_CLASS_OPTIONS: [10pt, presentation, aspectratio=169]
+#+BEAMER_THEME: metropolis [numbering=fraction, progressbar=frametitle, sectionpage=none]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t title:nil
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n) ignore(i)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
 
-#+LATEX_HEADER: \usepackage{tikzsymbols}
-#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
-#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
-#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
-#+LATEX_HEADER: \def\smileyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
-#+LATEX_HEADER: \def\frownyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
-#+LATEX_HEADER: \def\restoreitem{\setbeamertemplate{itemize item}[ball]}
-#+LATEX_HEADER: \def\smileysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
-#+LATEX_HEADER: \def\frownysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
-#+LATEX_HEADER: \def\restoresubitem{\setbeamertemplate{itemize subitem}[ball]}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{palatino}
+#+LATEX_HEADER: \usepackage{xspace}
+#+LATEX_HEADER: \usepackage[font=tiny,labelfont=bf]{caption}
+#+LATEX_HEADER: \captionsetup[figure]{labelformat=empty}%
+#+LATEX_HEADER: \usepackage[absolute,overlay]{textpos}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \definecolor{mblue}{HTML}{005c8b} 
+#+LATEX_HEADER: \definecolor{morange}{HTML}{f58431} 
 
-#+LaTeX: \urlstyle{sf}
-#+LaTeX: \let\alert=\structure
-#+LaTeX: \let\epsilon=\varepsilon
-#+LaTeX: \let\leq=\leqslant
-#+LaTeX: \let\geq=\geqslant 
+#+begin_export latex
+\institute{
+\\\bigskip
+\textbf{Encontro de Usuários do CESUP}\\
+Sala Abacateiro, do Centro Cultural da UFRGS\\
+Porto Alegre, 19 de agosto de 2024, 13h\\\bigskip
 
-#+BEGIN_EXPORT LaTeX  
-{%\setbeamertemplate{footline}{} 
+\includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}%
+\includegraphics[scale=1.6]{./logo/ufrgs2.png}%
+}
+#+end_export
+# +LATEX_HEADER:\newcommand*{\DEBUG}{}%
+#+LATEX_HEADER: \newcommand{\BC}{\textrm{BC}\xspace}
+#+LATEX_HEADER: \newcommand{\BCH}{\textrm{1D$\times$1D}\xspace}
+#+LATEX_HEADER: \newcommand{\BCHC}{\textrm{1D$\times$1D-C}\xspace}
+#+LATEX_HEADER: \newcommand{\BCHCS}{\textrm{1D$\times$1D-C+S}\xspace}
+#+LATEX_HEADER: \setlength{\TPHorizModule}{1mm}
+#+LATEX_HEADER: \setlength{\TPVertModule}{1mm}
+#+LATEX_HEADER: \usepackage{booktabs}
 
-\author{Lucas Mello Schnorr \newline\vspace{-.2cm} Instituto de Informática, UFRGS \\\vspace{-.5cm}}
 
-\date{-- Encontro de Usuários do CESUP -- \newline Sala Abacateiro, do Centro Cultural da UFRGS \newline Porto Alegre, 19 de agosto de 2024, 13h \\\smallskip}
 
-\titlegraphic{\vspace{-.5cm
-    \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
-    \includegraphics[scale=1.6]{./logo/ufrgs2.png}}}
+#+latex:\ifdefined\DEBUG
+#+latex:\setbeamertemplate{background canvas}{
+#+latex:\begin{tikzpicture}[remember picture,overlay]
+#+latex:\node [draw, thick, shape=rectangle, minimum width=3cm, minimum height=4cm, anchor=center] at (14,-6.5) {};
+#+latex:\filldraw (14,-6.5) node [below] {WebCam Debug} circle (1pt);
+#+latex:\end{tikzpicture} 
+#+latex:}
+#+latex:\fi
 
-\maketitle
 
-#+END_EXPORT
+#+latex: \setbeamerfont{title}{size=\large}
+#+latex: \setbeamerfont{subtitle}{size=\small}
 
-* Agradeço a atenção! Dados para contato
-** Contato                                                           :BMCOL:
+
+#+LATEX: \setbeamercolor{normal text}{% 
+#+LATEX:   fg=mblue, 
+#+LATEX:   bg=black!2 
+#+LATEX: } 
+ 
+#+LATEX: \setbeamercolor{alerted text}{%
+#+LATEX:   fg=morange
+#+LATEX: } 
+
+
+#+latex: \setbeamercolor{background canvas}{bg=white}
+
+#+LATEX: {
+#+LATEX:  \maketitle
+#+LATEX: }
+
+# +LaTeX: \setbeamertemplate{footline}[text line]{%
+# +LaTeX:   \parbox{\linewidth}{\vspace*{-8pt}\hspace{-1cm}\hfill ERAD/RS 2023 - DevOps para HPC: Como configurar um cluster para uso compartilhado \hfill\insertframenumber~/ \inserttotalframenumber}}
+#+LaTeX:  \setbeamertemplate{navigation symbols}{}
+
+#+LaTeX: \newcommand\boldblue[1]{\textcolor{erad20blue}{\textbf{#1}}}
+#+LaTeX: \newcommand\itred[1]{\textcolor{red}{\textit{#1}}}
+#+LaTeX: \definecolor{dpotrfcolor}{rgb}{0.8675,0,0}
+#+LaTeX: \definecolor{dgemmcolor}{rgb}{0,0.5625,0}
+#+LaTeX: \definecolor{dsyrkcolor}{rgb}{0.5625,0,0.5625}
+#+LaTeX: \definecolor{dtrsmcolor}{rgb}{0,0,0.8675}
+#+LATEX: \definecolor{thegray}{rgb}{0.95,0.95,0.95}
+
+* Visão Geral, Histórico e Requisitos
+** Histórico
+
+Plataforma em constante evolução
+- Depende fortemente dos projetos dos professores
+  - Heterogeneidade computacional
+- Autogerida, com esforço de pós-graduandos voluntários
+  - Discentes passam pelo sistema
+
+#+latex: \pause
+
+Preocupação com reprodutibilidade
+- Implantação de um sistema de gerenciamento
+- Configuração padrão para todas as máquinas
+- Colocar os usuários (/experts/) em primeiro plano
+
+#+latex: \pause
+
+#+begin_center
+Primeira organização geral em torno de \approx2018/2019
+
+Parque Computacional de Alto Desempenho (PCAD)
+
+https://gppd-hpc.inf.ufrgs.br/
+#+end_center
+
+** Parque Computacional de Alto Desempenho (PCAD)
+
+URL: http://gppd-hpc.inf.ufrgs.br/
+
+Possui aproximadamente 50 nós, 1000+ núcleos de CPU e 100000+ de GPU
+
+#+attr_latex: :width .55\linewidth
+[[./img/fotos-schema.pdf]]
+
+Localização: /Data Center/ do Instituto de Informática, UFRGS
+
+** Algumas configurações selecionadas de HW para cálculo
+*** Right                                                           :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.5
+:BEAMER_col: 0.45
+:END:
+
+Processadores Intel Xeon
+- E5530 Nehalem, X7550 Nehalem
+- E5-2630 Sandy Bridge
+- E5-2640 v2 Ivy Bridge
+- E5-2650 v3 Haswell
+- E5-2699 v4 Broadwell
+- Gold (5317 Ice Lake, 6226 C. Lake)
+- Silver (4208 C. Lake, 4116 Skylake)
+- Phi 7250 Knights Landing
+
+Processadores Intel Core
+- Intel Core i7-10700F, i7-14700KF
+- Intel Core i9-14900KF
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+
+Processadores AMD
+- AMD Ryzen 9 3950X Zen2
+- AMD RYZEN 5 3400G Zen+
+
+
+Aceleradoras NVIDIA
+- 6\times GTX1080Ti
+- 4\times P100
+- 1\times RTX3090
+- 5\times RTX4070
+- 6\times RTX4090
+
+Outras aceleradoras
+
+- 4\times NEC 10BE SX-Aurora
+- 3\times AMD Radeon RX 7900 XT
+
+** Requisitos almejados da infraestrutura
+*** Para os usuários
+
+- Serem independentes para realização de experimentos
+- Fácil utilização (assumindo claro um conhecimento de Linux)
+- Acesso isolado, irrestrito e com máximo desempenho aos recursos (/bare metal/)
+- Algumas facilidades (Sistema de arquivos global, Fila de utilização dos recursos)
+
+#+latex: \pause
+
+*** Para os professores
+
+- Controlar o grupo de usuários que usa um subconjunto de máquinas
+- Não se preocupar com o gerenciamento da máquina do seu projeto
+
+#+latex: \pause
+
+*** Para os administradores
+
+- Mutualização e melhor aproveitamento dos recursos computacionais
+- Instalação relativamente fácil \to Pouca manutenção (idealmente: /install and forget/)
+- Registro de todas as ações do usuário
+  
+** Configurações iniciais e filosofia geral da plataforma
+
+- Abordagem centralizada (um único controlador, o /front-end/)
+  #+begin_src shell :results output :exports both :eval no
+  ssh gppd-hpc.inf.ufrgs.br
+  #+end_src
+- Um único sistema operacional, sem virtualização, sem /deploy/
+
+#+latex: \pause
+
+- Usuários responsáveis pela maioria das bibliotecas
+  - Emprego de =docker=, =spack=, =guix= em função da experiência do usuário
+  - Evita-se enormemente "instalar pacotes para os usuários"
+
+#+latex: \pause
+
+- Requerimentos especiais
+  - Controlar frequência de CPU e GPU
+  - Desativar/ativar cores, turboboost, hyperthreading, ...
+  - Configurações específicas em BIOS
+
+* Configurações de HW e SW
+** Sistema base e gerenciamento de usuários e arquivos
+*** Sistema base \to Debian GNU/Linux                                                 
+:PROPERTIES:
+:BEAMER_col: 0.8
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+- /Free Software/, existe desde \approx1993
+- Versão /stable/ com LTS, atualmente Debian 12
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+#+attr_latex: :width .6\linewidth :center nil
+[[./img/openlogo-nd.png]]
+
+*** Junta                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
 :END:
 
 #+latex: \pause
+
+*** Gerenciamento de usuários \to LDAP (com OpenLDAP)
+:PROPERTIES:
+:BEAMER_col: 0.8
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+- /Free Software/, mantido pela Fundação OpenLDAP (desde \approx1998)
+  - Unificação de todos os usuários e dados do perfil (UID, GID)
+- Acesso utilizando chaves ssh
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+#+attr_latex: :width .8\linewidth :center nil
+[[./img/ldap.png]]
+
+*** Junta                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \pause
+
+*** Sistema de Arquivos de rede \to NFS
+:PROPERTIES:
+:BEAMER_col: 0.8
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+- Sistema presente direto no kernel do Linux
+  - Transparente, não requer configurações extras pelo usuário
+- Compartilha o diretório =$HOME= entre todas as máquinas
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+
+#+latex: {\Huge\textbf{NFS}}
+
+** Sistema de compartilhamento de recursos \to =slurm=
+*** Slurm
+:PROPERTIES:
+:BEAMER_col: 0.8
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+- Escalonar alocações e tarefas dos usuários nas máquinas
+- Amplamente utilizado em diversos supercomputadores
+  - Eficiente (realização do escalonamento e qualidade do mesmo)
+- Isolar os ambientes (nós ou recursos intra-nó)
+- Instalação relativamente fácil
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+
+#+attr_latex: :width \linewidth
+[[./img/Slurm_logo.png]]
+
+*** Junta                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \pause\bigskip
+
+Slurm é peça fundamental para gerenciar a heterogeneidade
+- Emprega-se o conceito de partição
+  - Nós que pertencem a uma partição são homogêneos
+- Temos \approx21 partições, muitas com somente 1 máquina
+
+** Infraestrutura da interconexão física
+
+#+begin_export latex
+\centering
+\only<1>{\includegraphics[width=0.9\linewidth]{"img/PCAD_1.pdf"}}%
+\only<2>{\includegraphics[width=0.9\linewidth]{"img/PCAD_2.pdf"}}%
+\only<3>{\includegraphics[width=0.9\linewidth]{"img/PCAD_3.pdf"}}%
+\only<4>{\includegraphics[width=0.9\linewidth]{"img/PCAD_4.pdf"}}
+#+end_export
+
+** Organização do software (visão geral)
+
+#+begin_export latex
+\centering
+\vspace{-0.4cm}\hspace{-0.4cm}\only<1>{\includegraphics[width=0.98\linewidth]{"img/Software_8.pdf"}}
+#+end_export
+
+* Utilização
+* Pessoas envolvidas
+** Pessoal
+*** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.47
+:END:
+**** Professores com fomento                                     :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+#+latex: \smallskip\fontsize{9}{10}\selectfont
+- Philippe O. Alexandre Navaux
+- Carla Freitas
+- Luciana Nedel
+- João Luiz Dihl Comba
+- Viviane P. Moreira
+- Mariana Recamonde Mendoza
+- Lucas Mello Schnorr
+
+**** Professores usuários
+#+latex: \smallskip\fontsize{9}{10}\selectfont
+Anderson Tavares, Antônio Beck Filho, Arthur Lorenzon, Cláudio Geyer,
+Cláudio Jung, Dennis Balreira, Eduardo Gastal, Joel Carbonera, Karin
+Becker, Luciano Gaspary, Paolo Rech, Thiago da Silveira, Luigi Carro
+
+#+latex: \pause
+
+*** Right                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.47
+:END:
+
+**** Usuários de outras instituições
+
+#+latex: \smallskip
+
+UFSM, FURG, UNIPAMPA
+
+INPE, UFPA, SERPRO, UNIOESTE
+
+#+latex: \pause\bigskip
+
+**** Discentes envolvidos (administradores)                      :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+#+latex: \smallskip
+
+Atuantes fundamentais
+
+- Lucas Nesi
+- Cristiano Kunas
+
+Ex-atuantes fundamentais
+
+- Matheus Serpa
+
+* Tendências e Conclusão
+** Contato
+*** Contato                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
 
 #+begin_center
 Obrigado pela atenção!
@@ -123,14 +412,18 @@ schnorr@inf.ufrgs.br
 #+end_center
 
 #+begin_center
-PCAD \to http://gppd-hpc.inf.ufrgs.br/
+PCAD
+
+http://gppd-hpc.inf.ufrgs.br/
 #+end_center
 
-** QrCode                                                            :BMCOL:
+#+attr_latex: :width .5\linewidth
+[[./logo/ppgc.png]]
+
+*** QrCode                                                           :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.5
 :END:
 #+attr_latex: :width .7\linewidth
 [[./img/qrcode.png]]
 
-URL do QRCODE: https://www.inf.ufrgs.br/~schnorr/
