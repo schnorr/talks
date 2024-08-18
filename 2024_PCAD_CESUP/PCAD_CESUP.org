@@ -136,6 +136,8 @@ Localização: /Data Center/ do Instituto de Informática, UFRGS
 :BEAMER_col: 0.45
 :END:
 
+#+latex: \smallskip
+
 Processadores Intel Xeon
 - E5530 Nehalem, X7550 Nehalem
 - E5-2630 Sandy Bridge
@@ -144,11 +146,14 @@ Processadores Intel Xeon
 - E5-2699 v4 Broadwell
 - Gold (5317 Ice Lake, 6226 C. Lake)
 - Silver (4208 C. Lake, 4116 Skylake)
-- Phi 7250 Knights Landing
+# - Phi 7250 Knights Landing
 
 Processadores Intel Core
 - Intel Core i7-10700F, i7-14700KF
 - Intel Core i9-14900KF
+
+Processadores NVIDIA
+- 2\times NVIDIA Grace CPU Superchip
 
 *** Left                                                            :BMCOL:
 :PROPERTIES:
@@ -195,7 +200,14 @@ Outras aceleradoras
 - Instalação relativamente fácil \to Pouca manutenção (idealmente: /install and forget/)
 - Registro de todas as ações do usuário
   
-** Configurações iniciais e filosofia geral da plataforma
+** Filosofia geral da plataforma
+
+- Garantia inspirada na GPLv3, sistema fornecido ``as-is''
+  - Sem backups, sem garantia que vá funcionar, tudo pode ser
+    desligado sem aviso prévio
+  - Trabalho voluntário de discentes da pós-graduação (PPGC)
+
+#+latex: \vfill\pause
 
 - Abordagem centralizada (um único controlador, o /front-end/)
   #+begin_src shell :results output :exports both :eval no
@@ -211,11 +223,12 @@ Outras aceleradoras
 
 #+latex: \pause
 
-- Requerimentos especiais
+- Requerimentos especiais para controle experimental
   - Controlar frequência de CPU e GPU
   - Desativar/ativar cores, turboboost, hyperthreading, ...
   - Configurações específicas em BIOS
-
+  - Uso de discos locais (/scratch/) para experimentos com dados
+    
 * Configurações de HW e SW
 ** Sistema base e gerenciamento de usuários e arquivos
 *** Sistema base \to Debian GNU/Linux                                                 
@@ -337,9 +350,29 @@ Slurm é peça fundamental para gerenciar a heterogeneidade
 #+end_export
 
 * Utilização
+** Visão geral das alocações / uso dos recursos
+
+Uso dos recursos (limite de 24hs por job) \to Muitos adotam =salloc= ao invés de =sbatch=
+
+#+attr_latex: :width \linewidth :center nil
+[[./img/gantt.png]]
+
 ** Uso para experimentos / protótipo
 
+Maior parte dos /jobs/ são de experimentos curtos
+- É uma plataforma experimental, tentativas e erros são frequentes
+- Serve de suporte para ensino em nível de graduação e pós-graduação
+  - Já serviu para suporte em minicurso da ERAD/RS
+- Frequente uso de um nó com GPU para inferência com LLMs
+  - Embora cada vez mais jobs usam para treinar redes profundas
+Maioria dos /jobs/ são single-node
 
+
+#+latex: \vfill\pause
+
+Suporta vários projetos de pesquisa
+- Fomento FAPERGS, CNPq, Petrobras, FINEP, HPE
+- Ministério da Saúde, SDECT/RS
 
 * Pessoas envolvidas
 ** Pessoal
@@ -400,7 +433,7 @@ Ex-atuantes fundamentais
 
 - Matheus Serpa
 
-* Tendências e Conclusão
+* Tendências, Referências e Conclusão
 ** Tendências
 
 Recentemente
@@ -416,8 +449,26 @@ Recentemente
 Futuro
 - Necessidade de /clusters/ maiores de aceleradoras
   - Atualmente temos a partição ``tupi'' (6 nós, cada uma com uma RTX4090)
-  - Usuários usam apenas 1 nó c/ GPU, quando poderiam distribuir em vários nós com GPU
+  - Usuários usam apenas 1 nó c/ GPU, quando poderiam distribuir em
+    vários nós com GPU
+  - Atualização de máquinas com GPUs profissionais nos nós que as suportam
 - Perspectiva da chegada de nós DGX H100
+
+Futuro mais distante \to Deploy bare-metal, PDU gerenciável
+
+** Referências
+
+DevOps para HPC: Como configurar um cluster para uso compartilhado
+- https://lnesi.gitlab.io/mc-hpc-share/
+- https://cradrs.github.io/eradrs2023/pdfs/minicursos/cap-3.pdf
+
+Boas práticas para experimentos HPC
+- https://exp-hpc.gitlab.io/
+- Série de minicursos desde 2019 na ERAD/RS, ERAD/SP, WSCAD
+
+Grupo de Processamento Paralelo e Distribuído (GPPD/HPC)
+- HPC, novas arquiteturas, paradigmas de prog. paralela, análise de desempenho
+- https://www.inf.ufrgs.br/gppd/site/
 
 ** Contato
 *** Contato                                                          :BMCOL:
