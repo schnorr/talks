@@ -36,8 +36,8 @@
 Sala Abacateiro, do Centro Cultural da UFRGS\\
 Porto Alegre, 19 de agosto de 2024, 13h\\\bigskip
 
-\includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}%
-\includegraphics[scale=1.6]{./logo/ufrgs2.png}%
+\includegraphics[scale=0.12]{./logo/inf-logo-1.0.pdf}\hspace{2cm}%
+\includegraphics[scale=0.17]{./logo/ufrgs.pdf}%
 }
 #+end_export
 # +LATEX_HEADER:\newcommand*{\DEBUG}{}%
@@ -491,7 +491,7 @@ http://gppd-hpc.inf.ufrgs.br/
 #+end_center
 
 #+attr_latex: :width .5\linewidth
-[[./logo/ppgc.png]]
+[[./logo/inf-logo-1.0.pdf]]
 
 *** QrCode                                                           :BMCOL:
 :PROPERTIES:
