@@ -125,8 +125,8 @@ URL: http://gppd-hpc.inf.ufrgs.br/
 
 Possui aproximadamente 50 nós, 1000+ núcleos de CPU e 100000+ de GPU
 
-#+attr_latex: :width .55\linewidth
-[[./img/fotos-schema.pdf]]
+#+attr_latex: :width .85\linewidth
+[[./img/20240819_104551.jpg]]
 
 Localização: /Data Center/ do Instituto de Informática, UFRGS
 
