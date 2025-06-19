@@ -1,0 +1,336 @@
+# -*- mode: org -*-
+# -*- coding: utf-8 -*-
+#+startup: beamer
+#+STARTUP: overview
+#+STARTUP: indent
+#+TAGS: noexport(n)
+
+#+TITLE: Spatio-Temporal Aggregation of StarPU multi-node traces
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [12pt,xcolor=dvipsnames,presentation,aspectratio=169]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: \usepackage{subfigure}
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \usetheme{Madrid}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER:  %\usepackage[colorlinks=true,citecolor=pdfcitecolor,urlcolor=pdfurlcolor,linkcolor=pdflinkcolor,pdfborder={0 0 0}]{hyperref}
+#+LATEX_HEADER: \usepackage[round-precision=3,round-mode=figures,scientific-notation=true]{siunitx}
+#+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+#+LATEX_HEADER: \usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \AtBeginDocument{
+#+LATEX_HEADER:   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+#+LATEX_HEADER:   \definecolor{pdfcitecolor}{rgb}{0,0.6,0}
+#+LATEX_HEADER:   \definecolor{pdflinkcolor}{rgb}{0.6,0,0}
+#+LATEX_HEADER:   \definecolor{light}{gray}{.85}
+#+LATEX_HEADER:   \definecolor{vlight}{gray}{.95}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{appendixnumberbeamer}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{color,colortbl}
+#+LATEX_HEADER: \definecolor{gray98}{rgb}{0.98,0.98,0.98}
+#+LATEX_HEADER: \definecolor{gray20}{rgb}{0.20,0.20,0.20}
+#+LATEX_HEADER: \definecolor{gray25}{rgb}{0.25,0.25,0.25}
+#+LATEX_HEADER: \definecolor{gray16}{rgb}{0.161,0.161,0.161}
+#+LATEX_HEADER: \definecolor{gray60}{rgb}{0.6,0.6,0.6}
+#+LATEX_HEADER: \definecolor{gray30}{rgb}{0.3,0.3,0.3}
+#+LATEX_HEADER: \definecolor{bgray}{RGB}{248, 248, 248}
+#+LATEX_HEADER: \definecolor{amgreen}{RGB}{77, 175, 74}
+#+LATEX_HEADER: \definecolor{amblu}{RGB}{55, 126, 184}
+#+LATEX_HEADER: \definecolor{amred}{RGB}{228,26,28}
+#+LATEX_HEADER: \usepackage[procnames]{listings}
+#+LATEX_HEADER: \lstset{ %
+#+LATEX_HEADER:  backgroundcolor=\color{gray98},    % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+#+LATEX_HEADER:  basicstyle=\tt\prettysmall,      % the size of the fonts that are used for the code
+#+LATEX_HEADER:  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
+#+LATEX_HEADER:  breaklines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  showlines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  captionpos=b,                     % sets the caption-position to bottom
+#+LATEX_HEADER:  commentstyle=\color{gray30},      % comment style
+#+LATEX_HEADER:  extendedchars=true,               % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+#+LATEX_HEADER:  frame=single,                     % adds a frame around the code
+#+LATEX_HEADER:  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+#+LATEX_HEADER:  keywordstyle=\color{amblu},       % keyword style
+#+LATEX_HEADER:  procnamestyle=\color{amred},       % procedures style
+#+LATEX_HEADER:  language=C,             % the language of the code
+#+LATEX_HEADER:  numbers=none,                     % where to put the line-numbers; possible values are (none, left, right)
+#+LATEX_HEADER:  numbersep=5pt,                    % how far the line-numbers are from the code
+#+LATEX_HEADER:  numberstyle=\tiny\color{gray20}, % the style that is used for the line-numbers
+#+LATEX_HEADER:  rulecolor=\color{gray20},          % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+#+LATEX_HEADER:  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+#+LATEX_HEADER:  showstringspaces=false,           % underline spaces within strings only
+#+LATEX_HEADER:  showtabs=false,                   % show tabs within strings adding particular underscores
+#+LATEX_HEADER:  stepnumber=2,                     % the step between two line-numbers. If it's 1, each line will be numbered
+#+LATEX_HEADER:  stringstyle=\color{amdove},       % string literal style
+#+LATEX_HEADER:  tabsize=2,                        % sets default tabsize to 2 spaces
+#+LATEX_HEADER:  % title=\lstname,                    % show the filename of files included with \lstinputlisting; also try caption instead of title
+#+LATEX_HEADER:  procnamekeys={call}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
+#+LATEX_HEADER: \newcommand{\quitesmall}{\fontsize{8}{10}\selectfont}
+
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\smileyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
+#+LATEX_HEADER: \def\frownyitem{\setbeamertemplate{itemize item}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
+#+LATEX_HEADER: \def\restoreitem{\setbeamertemplate{itemize item}[ball]}
+#+LATEX_HEADER: \def\smileysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\smiley$}}}
+#+LATEX_HEADER: \def\frownysubitem{\setbeamertemplate{itemize subitem}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths\color{black}$\frowny$}}}
+#+LATEX_HEADER: \def\restoresubitem{\setbeamertemplate{itemize subitem}[ball]}
+
+#+LaTeX: \urlstyle{sf}
+#+LaTeX: \let\alert=\structure
+#+LaTeX: \let\epsilon=\varepsilon
+#+LaTeX: \let\leq=\leqslant
+#+LaTeX: \let\geq=\geqslant 
+
+#+BEGIN_EXPORT LaTeX
+{%\setbeamertemplate{footline}{} 
+
+\author{Lucas Mello Schnorr, Lucas Assis \newline Instituto de Informática, UFRGS}
+
+\date{-- NumPex / ExaSoft / WP5 -- \newline (chez Datamove)  \newline June 19th, 2025 \\\smallskip}
+
+\titlegraphic{\vspace{-.5cm
+    \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
+    \includegraphics[scale=1.6]{./logo/ufrgs2.png}}}
+
+\maketitle
+
+#+END_EXPORT
+
+* Introduction & Motivation
+
+_StarPU-MPI_: Task Programming over Clusters of Machines Enhanced with Accelerators:
+https://inria.hal.science/hal-00725477
+- Each node generates a FXT file with timestamped events
+- Voluminous traces with all application tasks (and many other data)
+  - Start/End of states, performance metrics
+
+#+latex: \vfill\pause
+
+Assumptions
+1. Provide an exploratory analysis of the application/runtime behavior
+   - We don't know possible performance issues \to minimal filtering
+     during tracing
+   - Justify performance problems with contextual information from traces
+2. Trace visualization overwhelmed by the amount of data (temporal/spatial)
+   - Necessity of a visualization \to Visualizing More Performance Data
+     Than What Fits on Your Screen: https://inria.hal.science/hal-00737651
+
+#+latex: \vfill\pause
+
+** Problems                                                        :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+(1) Too much but necessary traces; (2) Visualization scalability of space/time views
+
+* Objetive & Approach
+
+1. Do trace aggregation before the trace visualization
+2. Investigate specifically the spatial/temporal aggregation together
+3. Provide a traditional space/time view
+
+#+latex: \pause\vfill
+
+Existing efforts within StarVZ (https://cran.r-project.org/web/packages/starvz/)
+#+latex_attr: :center no
+[[./agg_starvz.pdf]]
+\to It lacks spatial aggregation (i. e. aggregate nodes with similar behavior)
+
+#+latex: \pause\vfill
+
+** Goal                                                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+Explore =lpaggreg= within the context of StarVZ for StarPU traces |
+Dosimont et. al. "A spatiotemporal data aggregation technique for
+performance analysis of large-scale execution traces". CLUSTER 2014
+\to https://github.com/dosimont/lpaggreg
+
+* Methodology & Workflow
+
+(A) In the cluster
+1. Run the experiment in the cluster
+2. Collect FXT traces
+3. Run StarVZ Phase 1 script \to PARQUET (Columnar-based files)
+
+(B) In the laptop
+1. Employ StarVZ R Package
+2. Integrate _lpaggreg_ (this work)
+   - =read_starvz=, export pjdump, micro, aggregation, viz
+
+#+latex: \vfill\pause
+
+(C) Evaluation
+- Use previous StarPU traces obtained with (A)
+  - Nesi et. al. "Summarizing task-based applications behavior over
+    many nodes through progression clustering". PDP 2023. |
+    Chameleon + ExaGeoStat
+- Stress the usage of lpaggreg features (Information Loss, Complexity Reduction)
+
+* Lpaggreg features (Information Loss, Complexity Reduction)
+
+Integrate _lpaggreg_ (this work)
+- =read_starvz=, export pjdump, micro, aggregation, viz
+
+#+latex: %\vspace{0.2cm}
+
+** Left                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+#+latex: \scalebox{0.5}{
+| Parameter |               Gain |                  Loss | POpt  |
+|-----------+--------------------+-----------------------+-------|
+|         0 | 0.0411956541727119 | -1.02641907782919e-16 | FALSE |
+|    0.0625 |  0.173655727924065 |   0.00157655769097006 | FALSE |
+|     0.125 |  0.382826967688981 |    0.0249004552694742 | FALSE |
+|    0.1875 |  0.603343589271184 |    0.0644300849930824 | FALSE |
+|      0.25 |  0.615363211728487 |    0.0677042920117212 | FALSE |
+|    0.3125 |  0.627709273385034 |    0.0724654636070262 | FALSE |
+|     0.375 |  0.648086722611672 |    0.0828704306131623 | FALSE |
+|    0.4375 |  0.686311544823401 |     0.108093646729556 | FALSE |
+|       0.5 |  0.927290907242805 |     0.305838193382574 | TRUE  |
+|    0.5625 |  0.929053986692192 |     0.307990944412131 | FALSE |
+|     0.625 |   0.93092906631553 |     0.311047076192813 | FALSE |
+|    0.6875 |  0.948104037152438 |     0.342731084421385 | FALSE |
+|    0.8125 |  0.949305929084811 |      0.34671405810594 | FALSE |
+|     0.875 |  0.953750338312438 |     0.374181737848363 | FALSE |
+|    0.9375 |   0.99223795542665 |     0.859582936312456 | FALSE |
+|         1 |                  1 |                     1 | FALSE |
+#+latex: }
+
+** Plot                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+attr_latex: :center no :width .6\linewidth
+[[./p_example.pdf]]
+
+** Normal                                                  :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+Each spatio/temporal aggregation provides several views
+- One for each *Parameter*: 0 means minimal aggregation; 1 means full aggregation
+- Each parameter represent a tradeoff (with an ``ideal tradeoff'', see *POpt*)
+
+* Case studies (Chameleon Dense LU Facto. and ExaGeoStat)
+
+=2W+DIF=: 30 nodes, 2 GPUs each, two faulty nodes with only one GPU each
+- It uses StarPU-Simgrid (http://dx.doi.org/10.1002/cpe.3555) to run Chameleon
+#+attr_latex: :center no :height 2.5cm
+[[./2w+dif_original.pdf]]
+
+=EXAGEO=: 8 nodes, where six are CPU-only (2iters; real execution of ExaGeoStat in G5K)
+#+attr_latex: :center no :height 2.5cm
+[[./exageo_original.pdf]]
+
+* Preliminary Results: Dense LU Facto 1/2
+
+StarVZ (no aggregation) @@latex: \hfill @@ Lpaggreg Viz (minimal aggregation)
+
+@@latex: \hfill@@ 100 time slices
+
+#+attr_latex: :center no :width .87\linewidth
+[[./2w+dif_p-0.png]]
+
+#+latex: \vfill\pause
+
+Overall visualization simplification (much less graphical elements)
+- "minimal aggregation" may be more detailed with more time slices
+
+* Preliminary Results: Dense LU Facto 2/2
+
+The first 10 tradeoffs (0.5 is POpt)
+
+#+attr_latex: :center no :width \linewidth
+[[./2w+dif_5p_line1.png]]
+
+#+attr_latex: :center no :width \linewidth
+[[./2w+dif_5p_line2.png]]
+
+* Preliminary Results: ExaGeoStat 1/2
+
+StarVZ (no aggregation) @@latex: \hfill @@ Lpaggreg Viz (minimal aggregation)
+
+@@latex: \hfill@@ 100 time slices
+
+#+attr_latex: :center no :width \linewidth
+[[./exageo_p-0.png]]
+
+* Preliminary Results: ExaGeoStat 2/2
+
+The first 10 tradeoffs (0.375 is POpt)
+
+#+attr_latex: :center no :width \linewidth
+[[./exageo_5p_line1.png]]
+
+#+attr_latex: :center no :width \linewidth
+[[./exageo_5p_line2.png]]
+
+* Conclusion & Future Work
+
+Weaknesses
+- Computationally expensive (not linear) as the number of time slices increases
+  - But we can run this part in the cluster anyway
+- Method adopts a single and flat hierarchy
+  - Spatial aggregation only works with neighbor nodes
+
+#+latex: \vfill\pause
+
+Multiple hierarchies
+- Nesi et. al. calculates a ``Progression Metric'' for each node (PDP23)
+  - Multiple node groups with similar progressions
+- Incorporate these groups into a lpaggreg hierarchy
+  - With intermediate levels enriching the "flat" version of today
+  - Slicing the trace and using several different well-selected hierarchies
+    - Surely a visualization challenge! ;-)
+
+#+latex: \vfill\pause
+
+Machinery is working. _Do some realistic performance analysis with it_.
+- Experimentation, What-if scenarios, etc \to Large-scale experiments
+
+* Contact
+** Contact                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.8
+:END:
+
+#+begin_center
+Merci pour votre attention !
+#+end_center
+
+#+begin_center
+Lucas Mello Schnorr <schnorr@inf.ufrgs.br>
+
+Lucas Barros de Assis <lucas.assis@inf.ufrgs.br>
+#+end_center
+
+** QrCode                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.2
+:END:
+#+attr_latex: :width \linewidth
+[[./img/qrcode.png]]
+
+** Normal                                                  :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+# Merci à Damien Dosimont (BSC), Guillaume Huard, Vincent Danjean,
+# Arnaud Legrand et Jean-Marc Vincent.
