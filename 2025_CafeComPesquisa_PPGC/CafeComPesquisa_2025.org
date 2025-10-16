@@ -104,6 +104,28 @@
 
 #+END_EXPORT
 
+* Demonstração whisper
+** Fazer ssh na tupi6
+#+begin_src shell :results output :exports both
+ssh tupi6.inf
+#+end_src
+** Em whisper-workspace, executar a transcrição de uma aula
+#+begin_src shell :results output :exports both
+time ./transcreve --task transcribe --language Portuguese -f all Compiladores-2025_2-Aula16.flac
+#+end_src
+* Demonstração realtime-whisper                                    :noexport:
+** Fazer ssh criando um tunel para a máquina alvo
+#+begin_src shell :results output :exports both
+ssh -L 5000:tupi6:5000 pcad.inf.ufrgs.br
+#+end_src
+** Em realtime-whisper-workspace, executar a transcrição ao vivo
+#+begin_src shell :results output :exports both
+nc -l -p 5000 | ffmpeg -i - -ac 1 -ar 16000 -f s16le -nostats -loglevel quiet - | docker run --rm -i --gpus all -v $(pwd):/home/user whisper
+#+end_src
+** Lançar a captura do microfone
+#+begin_src shell :results output :exports both
+ffmpeg -f pulse -i "alsa_input.usb-Jieli_Technology_USB_Composite_Device_1120042102070610-00.mono-fallback" -ac 1 -ar 16000 -f flac -nostats -loglevel quiet - | nc localhost 5000
+#+end_src
 * Parque Computacional de Alto Desempenho (PCAD)
 
 URL: http://pcad.inf.ufrgs.br/ \hfill
