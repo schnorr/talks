@@ -8,7 +8,7 @@
 #+TITLE: Parque Computacional de Alto Desempenho
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [12pt,xcolor=dvipsnames,presentation,aspectratio=169]
+#+LaTeX_CLASS_OPTIONS: [14pt,xcolor=dvipsnames,presentation,aspectratio=169]
 #+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t title:nil
 #+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
 #+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,xspace}
@@ -93,11 +93,10 @@
 #+BEGIN_EXPORT LaTeX  
 {%\setbeamertemplate{footline}{} 
 
-\author{Lucas Mello Schnorr \newline Instituto de Informática, UFRGS}
+\author{Lucas Mello Schnorr e vários colegas \newline Instituto de Informática, UFRGS}
+\date{\\\vspace{-1cm}-- Café com Pesquisa do PPGC -- \newline PPGC/UFRGS, Porto Alegre, Brasil \newline 16 de outubro de 2025, 13h15 \\\smallskip}
 
-\date{-- Café com Pesquisa do PPGC -- \newline PPGC/UFRGS, Porto Alegre, Brasil \newline 16 de outubro de 2025, 13h15 \\\smallskip}
-
-\titlegraphic{\vspace{-.5cm
+\titlegraphic{\vspace{-.2cm%
     \includegraphics[scale=0.12]{./logo/ppgc.png}\hspace{2cm}
     \includegraphics[scale=1.6]{./logo/ufrgs2.png}}}
 
@@ -105,26 +104,107 @@
 
 #+END_EXPORT
 
-* Parque Computacional de Alto Desempenho (PCAD) @ INF
+* Parque Computacional de Alto Desempenho (PCAD)
 
-# #+attr_latex: :width .2\linewidth
-# [[./logo/Top500_logo.png]]
+URL: http://pcad.inf.ufrgs.br/ \hfill
 
-Possui \approx50 nós: \approx1K em CPU e \approx100K em GPU
+**                                                                   :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.75
+:END:
+#+attr_latex: :width \linewidth :center nil
+[[./img/20240819_104551.png]]
 
-Site: =https://pcad.inf.ufrgs.br/=
+**                                                                   :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.20
+:END:
 
-#+latex: {\small\centering\bigskip
-#+attr_latex: :width .6\linewidth :center nil
-[[./img/20240819_104551.png]] \\
+#+latex: {\small
+#+begin_center
+Nós \approx50
+
+CPU \approx1K
+
+GPU \approx100K
+
+RAM \approx6TB
+
+Disco \approx440TB
+
+\bigskip
+
+Rede 100GB
+
+/em breve/
+#+end_center
+#+latex: }
+
+**                                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
 19/08/2024 às 10h45, recém migrado para o Data Center
 
-#+latex: \bigskip}
+Localização: /Data Center/ do Instituto de Informática, UFRGS
 
-Temos um Grupo de Trabalho (GT) \to DevOps da plataforma
-- =gt-cluster-l@inf.ufrgs.br= (para mais informações)
+* Que tipo de investigação é realizada nesta plataforma?
 
-* Inúmeros desafios para empregar eficientemente estas máquinas
+#+latex: \pause
+
+- =SOSREVNI SAMELBORP=
+- =IA=: treinamento e inferência (bastante /transfer learning/, etc) \pause
+- Question Answering (QA) em língua portuguesa
+- Testes [...] Relatividade Geral [...] pelo LIGO/Virgo/KAGRA
+- AI-driven spectral fitting pipeline to analyze [...] in galaxy evolution
+- Human Value Detection in Speech through LLM Ensemble \small\pause
+- Evolução cromossômica em Aves e Roedores \pause
+- Super Resolução Aplicada a Imagens de Baixa Resolução Naturais
+- Analysis and Benchmarking of Knowledge Graph Embedding
+- Modelos de Aprendizado de máquina Robustos e Conﬁáveis para a Saúde \scriptsize
+- Paralelização do Fletcher usando Star-PU
+- Aprimoramento de SLM para geração de código paralelo
+- Desempenho I/O para Cargas de Trabalho de ML \tiny  
+- Rodar um servidor perf3 para testar a infraestrutura de VPN da UFRGS
+- Time to rethink NER Splits
+
+* Filosofia geral da plataforma
+
+Garantia inspirada na GPLv3, sistema fornecido ``as-is''
+- Sem backups, sem garantia, tudo pode ser desligado sem aviso prévio
+- Trabalho voluntário de discentes da pós-graduação (PPGC)
+
+#+latex: \vfill\pause
+
+#+begin_center
+Um único /front-end/, acesso via ssh
+
+=ssh pcad.inf.ufrgs.br=
+
+Acesso exclusivo aos recursos computacionais
+#+end_center
+
+#+latex: \pause\vfill
+
+Usuários responsáveis pelo software
+- Emprega-se de =docker=, =spack=, =guix=, =nix=
+- Evita-se enormemente "instalar pacotes para os usuários"
+
+* Demonstração
+
+Tutor AI das disciplinas
+- CMP223 / INF01146 (Comp. Syst. Perf. Analysis)
+- INF01147 (Compiladores)
+
+#+latex: \vfill\pause
+
+Passos
+1. O audio do professor é gravado durante a aula
+2. Transcreve-se (/transcribe/) o audio para texto
+3. Cria-se o assistente de estudo baseado nas transcrições de aula
+
+* Desafios para empregar eficientemente estas máquinas
 ** Right                                                             :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.1
@@ -133,6 +213,8 @@ Temos um Grupo de Trabalho (GT) \to DevOps da plataforma
 #+attr_latex: :width \linewidth :center nil
 [[./img/escola-ppgc-50anos.png]] 
 
+#+latex: \vspace{4cm}
+
 ** Left                                                              :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.8
@@ -140,317 +222,41 @@ Temos um Grupo de Trabalho (GT) \to DevOps da plataforma
 
 *(1) Pensamento computacional paralelo*
 
-https://doi.org/10.5753/sbc.13058.5 (Cap. 3)
+- ECOA: https://doi.org/10.5753/sbc.13058.5 (Cap. 3)
 
-- INF01008 (Prog. Distr. e Par.) e PPGC/CMP270 (Intr. HPC)
+- INF01008 (ProgPar) e PPGC/CMP270 (Intr. HPC)
 
-** Anula                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-#+latex: \pause
-
-** Left                                                              :BMCOL:
-:PROPERTIES:
-:BEAMER_opt: t
-:BEAMER_col: 0.6
-:END:
-
-#+latex: \vspace{.2cm}
+#+latex: \vfill
 
 *(2) Escolha do modelo de programação paralela*
 - Tradicional: MPI/OpenMP/CUDA
-- Modelos abstratos baseado em grafo de tarefas @@latex:\pause\vfill@@
+- Modelos abstratos baseado em grafo de tarefas
+
+#+latex: \vfill
 
 *(3) Balanceamento de carga computacional*
 - Dividir corretamente a carga de trabalho
 
-*** Reflexão importante quando em produção                 :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-#+begin_center
-Uso eficiente? Poderia ser melhor?
+* Aspectos técnicos fundamentais para viver esta área
 
-@@latex: \pause@@
-
-#+end_center
-  
-** Right                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_opt: t
-:BEAMER_col: 0.39
-:END:
+1. Usar Linux
+2. Viver bem na linha de comando
+3. Bash, Make, CMake e scripts
+4. Ferramentas de sistema
 
 #+begin_center
-*Análise de desempenho*
+The Missing Semester of Your CS Education
+
+https://missing.csail.mit.edu/
+
+Em PT-BR: https://missing-semester-pt.github.io/
 #+end_center
 
-#+attr_latex: :width .35\linewidth
-[[./img/raj.jpg]]
-
-#+begin_center
-PPGC/CMP223
-
-(Comp. Syst. Perf. Analysis)
-#+end_center
-
-* O maior supercomputador do mundo (Top500 11/2023)                :noexport:
-
-Processamento de Alto Desempenho (PAD) -- /High-Performance Computing/ (HPC)
-
-Área da computação que emprega computadores para resolver problemas
-grandes
-
-[[./img/applications.pdf]]
-
-
-#+latex: \pause
-
-** Right                                                          :B_column:
-:PROPERTIES:
-:BEAMER_env: column
-:BEAMER_col: 0.7
-:END:
-
-
-Supercomputador /Frontier/
-
-(Oak Ridge National Laboratory, USA)
-
-
-# - Custo \to 600M USD ([[https://en.wikipedia.org/wiki/Frontier_(supercomputer)][fonte]], \approx33% LOA2023 de POA)
-# - Power \to 22.7 MW (\approx15% da UH Passo Real)
-- 1.194 exaFLOPS (operações PF por segundo)
-  - 9472 AMD Epyc 7A53s "Trento" 64 core 2 GHz CPUs
-  - 37,888 Radeon Instinct MI250X GPUs
-
-#+latex: \vfill
-
-- 74 racks, cada um com 64 /blades/, cada blade com 2 nós
-  - 1 nó: 1 CPU (4TB), 4 GPUs (cada 128GB)
-
-** Left                                                     :B_column:BMCOL:
-:PROPERTIES:
-:BEAMER_env: column
-:BEAMER_col: 0.3
-:END:
-
-#+attr_latex: :width .95\linewidth
-[[./logo/Frontier_Supercomputer.jpg]]
-
-* Observação do comportamento de aplicações paralelas              :noexport:
-
-#+begin_center
-Existem basicamente duas técnicas
-#+end_center
-
-** Left                                                              :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.45
-:END:
-
-*** /Profiling/                                              :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-
-Perfilamento periódico
-
-Visão geral com baixo custo
-
-#+attr_latex: :width .7\linewidth
-[[./img/flame-graph.png]]
-
-#+latex: \pause
-
-** Right                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.45
-:END:
-
-*** /Tracing/                                                :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-Rastreamento de eventos importantes
-
-Habilita reconstruir comportamento
-
-#+attr_latex: :width \linewidth
-[[./img/starvz-gantt.png]]
-
-** Anula                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-#+latex: \vfill
-
-* Um exemplo do grande volume de dados (/Big Data/)                  :noexport:
-** Left                                                              :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.7
-:END:
-Aplicação ExaGeoStat - Modelagem de dados geoestatísticos
-- https://github.com/ecrc/exageostat
-
-#+latex: \medskip
-
-\to _Qual a melhor distribuição em clusters heterogêneos?_
-
-#+latex: \medskip
-
-** Right (Image)                                                     :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.3
-:END:
-
-#+attr_latex: :width \linewidth
-[[./img/exageostat.jpeg]]
-
-** Back to normal                                    :B_ignoreheading:BMCOL:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-#+latex: \pause\vfill
-
-Cuidadosamente configurando o rastreamento para um determinada entrada
-- 500MBytes por nó computacional a cada 3 iterações
-- Uma execução completa tem aproximadamente 180 iterações
-  - Usando 128 nós do Supercomputador SDumont: \approx4Tbytes de dados
-
-** Como analisar esses dados?                               :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-- A aplicação se comportou adequadamente?
-- Foi eficiente no uso dos recursos?
-
-* Ciência de dados para análise de aplicações paralelas            :noexport:
-** Left                                                              :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.45
-:END:
-*** Python                                                 :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-
-Python for Data Analysis, 3E
-
-https://wesmckinney.com/book/
-
-#+begin_export latex
-\includegraphics[width=1.6cm]{./img/pandas.png}\hfill%
-\includegraphics[width=2cm]{./img/numpy.png}\hfill%
-\includegraphics[width=2cm]{./img/dask.png}
-#+end_export
-
-** Right                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.45
-:END:
-*** R                                                      :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-
-R for Data Science, 2E \approx tidyverse
-
-https://r4ds.hadley.nz/
-
-#+begin_export latex
-\includegraphics[width=.9\linewidth]{./img/tidyverse.pdf}
-#+end_export
-
-** Unica                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-#+latex: \pause
-
-
-*** starvz: R-Based Visualization Techniques for Task-Based Applications :B_block:
-:PROPERTIES:
-:BEAMER_env: block
-:END:
-
-**** Left                                                          :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.6
-:END:
-
-(release) https://CRAN.R-project.org/package=starvz
-
-Visualização de dados para análise de desempenho
-
-**** Right                                                         :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.35
-:END:
-
-
-#+attr_latex: :width \linewidth
-[[./img/workflow-starvz.pdf]]
-
-* Visualização do comportamento da aplicação paralela (Exemplo)    :noexport:
-
-** Left                                                              :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.3
-:END:
-Fatoração Cholesky por blocos
-#+attr_latex: :width \linewidth :center nil
-[[./img/cholesky-code.png]]
-
-** Right                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.7
-:END:
-
-Grafo de tarefas que será escalonado na plataforma
-#+attr_latex: :width .8\linewidth :center nil
-[[./img/dag-5x5-crop-crop.pdf]]
-
-** Normal                                                  :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-Empregando StarVZ
-#+attr_latex: :width .9\linewidth :center nil
-[[./img/kchart.png]]
-
-* Linhas de Pesquisa e Contato
-** Computação de Alto Desempenho e Sistemas Distribuídos      :B_alertblock:
-:PROPERTIES:
-:BEAMER_env: alertblock
-:END:
-
-#+latex: \small
-
-Arthur Lorenzon, Claudio Geyer, *Lucas Mello Schnorr*, Philippe Navaux
-
-** Mineração, Integração e Análise de Dados                   :B_alertblock:
-:PROPERTIES:
-:BEAMER_env: alertblock
-:END:
-
-#+latex: \small
-
-Dennis Balreira, Joel Carbonera, Joel Carbonera, José Palazzo, João
-Comba, Karin Becker, *Lucas Mello Schnorr*, Mara Abel, Mariana
-R. Mendoza, Renata Galante, Viviane Pereira Moreira, Karina Kohl
-Silveira, Luciana Bencke, Lucinéia Heloísa Thom
-
+* Contato
 ** Contato                                                           :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.8
 :END:
-
-#+latex: \pause
 
 #+begin_center
 Obrigado pela atenção!
