@@ -255,7 +255,7 @@ Em PT-BR: https://missing-semester-pt.github.io/
 * Contato
 ** Contato                                                           :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.8
+:BEAMER_col: 0.5
 :END:
 
 #+begin_center
@@ -268,7 +268,7 @@ schnorr@inf.ufrgs.br
 
 ** QrCode                                                            :BMCOL:
 :PROPERTIES:
-:BEAMER_col: 0.2
+:BEAMER_col: 0.3
 :END:
 #+attr_latex: :width \linewidth
 [[./img/qrcode.png]]
