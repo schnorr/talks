@@ -278,6 +278,7 @@ Slurm é peça fundamental para gerenciar a heterogeneidade
 \only<4>{\includegraphics[width=0.9\linewidth]{"img/PCAD_4.pdf"}}
 #+end_export
 
+* Atualização
 ** Atualização em futuro próximo 1/2 (560k USD)
 
 Receberemos via FINEP Proinfra projeto Multi-Cad um nó *NVIDIA DGX B200*
@@ -337,7 +338,6 @@ Receberemos via FINEP Proinfra projeto Multi-Cad um nó *NVIDIA DGX B200*
 | FP64        | 37 teraFLOPS   | ~296 teraFLOPS      |
 
 
-
 *** Right                                                           :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.45
@@ -388,9 +388,69 @@ Praticamente todos os nós computacionais serão equipados com rede 100Gbit/s
 E estaremos conectados na rede e-Ciência da RNP via 100Gbit/s.
 
 * Demonstração
+** Demonstração de acesso ao PCAD
+
+#+attr_latex: :width .8\linewidth
+[[./img/terminal.png]]
 
 * Pesquisa
+** Pesquisas do GPPD-HPC (https://www.inf.ufrgs.br/gppd/site/)
+*** Três professores
+- Philippe Olivier Alexandre Navaux
+- Arthur Francisco Lorenzon
+- Lucas Mello Schnorr
+*** Tópicos transversais do grupo
 
+|------------------------+--------------------------------------------------------------|
+| Programação paralela   | OpenMP, MPI, CUDA, modelos task-based (StarPU)               |
+| Escalonamento          | Balanceamento de carga, mapeamento de tarefas/dados, DCT     |
+| Eficiência energética  | Green computing, EDP, DVFS, gestão de frequência em exascale |
+| Infraestrutura HPC     | Gestão de clusters (Slurm, BCM), PCAD, reprodutibilidade     |
+| Aplicações científicas | Sísmica, CFD, stencils geofísicos, grafos, deep learning     |
+| HPC + IA               | Treinamento e inferência de LLMs, GPU sharing, AI Factories  |
+| Visualização           | Traces de performance, ferramentas PajeNG, StarVZ            |
+| Simulação              | Simulação de sistemas computacionais (SimGrid)               |
+|------------------------+--------------------------------------------------------------|
+
+** Pesquisa: observação do comportamento de aplicações task-based 1/2
+
+Fatoração Cholesky por blocos e o seu Directed-Acyclic Graph (para $N=5$).
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.58
+:END:
+
+#+begin_export latex
+\newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
+\lstset{basicstyle=\ttfamily, frame=bt,backgroundcolor=\color{white},numbers=none,numberstyle=\tt\prettysmall,escapechar=|}\lstinputlisting{cholesky.c}%
+#+end_export
+
+*** Right                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.38
+:END:
+#+BEGIN_EXPORT latex
+\includegraphics[width=\linewidth]{img/dag-5x5-crop.pdf}
+#+END_EXPORT
+
+** Pesquisa: observação do comportamento de aplicações task-based 2/2
+
+StarPU /runtime/ gera um rastro (/trace/) de um escalonamento do DAG nos recursos.
+
+R/StarVZ https://cran.r-project.org/web/packages/starvz/ para análise.
+
+#+attr_latex: :width 1\linewidth
+[[./img/panel_st-crop.pdf]]
+
+#+latex: \pause
+
+*** Questionamentos típicos
+- Como melhorar o escalonamento do DAG?
+- Dado uma aplicação, como chegar a um algoritmo por blocos?
+- Como participar o DAG em sistemas heterogêneos em nível de sistema?
+- Como fazer uma visualização de dados de grande escala?
+  
 * Tendências, Referências e Conclusão
 ** Referências
 
