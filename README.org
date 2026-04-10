@@ -28,15 +28,9 @@ Welcome. Seja bemvinda(o). Soyez le(a) bienvenu(e).
 - br: Eu matenho aqui o código fonte de minhas intervenções, no formato [[http://orgmode.org][ORG]].
 - fr: Ici, je mantiens le code source de mes presentations, au format  [[http://orgmode.org][ORG]].
 
-** 2018
-
-- May 15th, 2018: [[./2018_CienciaLivre/ILEA_CTL_2018.org][Ensino Aberto e Reprodutibilidade na Ciência]] ([[./2018_CienciaLivre/ILEA_CTL_2018.pdf][PDF]]). Ciclo
-  de Conferências do ILEA -- Estudos Avançados em Ciências e
-  Humanidades. ILEA/UFRGS, Porto Alegre, Brazil.
-
 ** Previous presentations
 
-Check http://www.inf.ufrgs.br/~schnorr/talks.html.
+Check http://www.inf.ufrgs.br/~schnorr/talks/.
 
 * Contato
 
