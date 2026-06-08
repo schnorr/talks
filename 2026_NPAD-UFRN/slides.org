@@ -10,12 +10,21 @@
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [10pt, xcolor=dvipsnames]
 #+BEAMER_THEME: metropolis [numbering=fraction]
-#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t title:nil
 #+LANGUAGE: pt-br
 #+TAGS: noexport(n) ignore(i)
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+EXPORT_SELECT_TAGS: export
-#+LATEX_HEADER: \institute{Núcleo de Processamento de Alto Desempenho (NPAD/UFRN) -- 2026}
+#+begin_export latex
+\institute{
+\\\bigskip
+\textbf{Núcleo de Processamento de Alto Desempenho (NPAD) \\
+Universidade Federal do Rio Grande do Norte (UFRN) \\
+Natal - RN, 10 de junho de 2026\\\bigskip
+\includegraphics[scale=0.12]{./logo/inf-logo-1.0.pdf}\hspace{2cm}%
+\includegraphics[scale=0.17]{./logo/ufrgs.pdf}%
+}}
+#+end_export
 #+LATEX_HEADER: \usepackage{multicol}
 #+LATEX_HEADER: \usepackage{subcaption}
 #+LATEX_HEADER: \usepackage[backend=bibtex]{biblatex}
@@ -25,8 +34,61 @@
 #+LATEX_HEADER: %\usepackage{enumitem}
 #+LATEX_HEADER: %\setlist[itemize]{leftmargin=1.2em}
 #+LATEX_HEADER: %O\input{org-babel.tex}
+#+LATEX_HEADER: \AtBeginDocument{
+#+LATEX_HEADER:   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+#+LATEX_HEADER:   \definecolor{pdfcitecolor}{rgb}{0,0.6,0}
+#+LATEX_HEADER:   \definecolor{pdflinkcolor}{rgb}{0.6,0,0}
+#+LATEX_HEADER:   \definecolor{light}{gray}{.85}
+#+LATEX_HEADER:   \definecolor{vlight}{gray}{.95}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{color,colortbl}
+#+LATEX_HEADER: \definecolor{gray98}{rgb}{0.98,0.98,0.98}
+#+LATEX_HEADER: \definecolor{gray20}{rgb}{0.20,0.20,0.20}
+#+LATEX_HEADER: \definecolor{gray25}{rgb}{0.25,0.25,0.25}
+#+LATEX_HEADER: \definecolor{gray16}{rgb}{0.161,0.161,0.161}
+#+LATEX_HEADER: \definecolor{gray60}{rgb}{0.6,0.6,0.6}
+#+LATEX_HEADER: \definecolor{gray30}{rgb}{0.3,0.3,0.3}
+#+LATEX_HEADER: \definecolor{bgray}{RGB}{248, 248, 248}
+#+LATEX_HEADER: \definecolor{amgreen}{RGB}{77, 175, 74}
+#+LATEX_HEADER: \definecolor{amblu}{RGB}{55, 126, 184}
+#+LATEX_HEADER: \definecolor{amred}{RGB}{228,26,28}
+#+LATEX_HEADER: \usepackage[procnames]{listings}
+#+LATEX_HEADER: \lstset{ %
+#+LATEX_HEADER:  backgroundcolor=\color{gray98},    % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+#+LATEX_HEADER:  basicstyle=\tt\prettysmall,      % the size of the fonts that are used for the code
+#+LATEX_HEADER:  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
+#+LATEX_HEADER:  breaklines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  showlines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  captionpos=b,                     % sets the caption-position to bottom
+#+LATEX_HEADER:  commentstyle=\color{gray30},      % comment style
+#+LATEX_HEADER:  extendedchars=true,               % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+#+LATEX_HEADER:  frame=single,                     % adds a frame around the code
+#+LATEX_HEADER:  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+#+LATEX_HEADER:  keywordstyle=\color{amblu},       % keyword style
+#+LATEX_HEADER:  procnamestyle=\color{amred},       % procedures style
+#+LATEX_HEADER:  language=C,             % the language of the code
+#+LATEX_HEADER:  numbers=none,                     % where to put the line-numbers; possible values are (none, left, right)
+#+LATEX_HEADER:  numbersep=5pt,                    % how far the line-numbers are from the code
+#+LATEX_HEADER:  numberstyle=\tiny\color{gray20}, % the style that is used for the line-numbers
+#+LATEX_HEADER:  rulecolor=\color{gray20},          % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+#+LATEX_HEADER:  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+#+LATEX_HEADER:  showstringspaces=false,           % underline spaces within strings only
+#+LATEX_HEADER:  showtabs=false,                   % show tabs within strings adding particular underscores
+#+LATEX_HEADER:  stepnumber=2,                     % the step between two line-numbers. If it's 1, each line will be numbered
+#+LATEX_HEADER:  stringstyle=\color{amdove},       % string literal style
+#+LATEX_HEADER:  tabsize=2,                        % sets default tabsize to 2 spaces
+#+LATEX_HEADER:  % title=\lstname,                    % show the filename of files included with \lstinputlisting; also try caption instead of title
+#+LATEX_HEADER:  procnamekeys={call}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
+#+LATEX_HEADER: \newcommand{\quitesmall}{\fontsize{8}{10}\selectfont}
 
 # You need at least Org 9 and Emacs 24 to make this work.
+
+
+#+LATEX: {
+#+LATEX:  \maketitle
+#+LATEX: }
 
 * Dados                                                            :noexport:
 ** Título
@@ -52,7 +114,7 @@ análise de dados reprodutíveis e de transparência científica.
 - [ ] Formas de Controle
 ** Instituto de Informática em Porto Alegre (RS)
 
-Vista geral de *Porto Alegre* em outubro, do Morro da Glória, 287 metros
+Vista geral de *Porto Alegre* em outubro, do Morro da Glória, 287m
 #+latex: \vspace{-.2cm}
 #+attr_latex: :width \linewidth
 [[./img/poa.jpg]]
@@ -270,8 +332,9 @@ Novas possibilidades
 - Análise expressiva e flexível de *rastros de execução*
 - Suporte a uma variedade gigante de tipos de aplicações
   - Tradicional Bulk-Synchronous Parallel (BSP, MPI, MPI+X)
-  - Baseadas em *tarefas* (StarPU, Parsec, OpenMP)
+  - Baseadas em *tarefas* (StarPU, Parsec, OpenMP tasks)
 - Tratamento de desafios de *escalabilidade*
+  - Enorme volume de dados rastreados
 
 #+latex: \vfill\pause
 
@@ -279,7 +342,183 @@ Além da análise de desempenho
 - *Reprodutibilidade* dos experimentos e análises
 - *Transparência científica* nos resultados
 
+** Plano
+
+1. Revisar o funcionamento do paralelismo de tarefas
+   - /Sequential Task Flow/ (STF) com o runtime StarPU
+2. Apresentar o pacote R =StarVZ=
+   - R-Based Visualization Techniques for Task-Based Applications
+   - https://cran.r-project.org/web/packages/starvz/
+3. Alguns exemplos recentes de uso
+
+* StarVZ
+** Paralelismo de Tarefas no StarPU
+
+Aplicações são representadas por grafo de tarefas
+- Código da aplicação é sequencial (/Sequential Task Flow/ -- STF)
+
+Exemplo: Fatorização de cholesky por blocos
+
+#+BEGIN_EXPORT LaTeX
+\definecolor{dpotrfcolor}{rgb}{0.8675,0,0}
+\definecolor{dgemmcolor}{rgb}{0,0.5625,0}
+\definecolor{dsyrkcolor}{rgb}{0.5625,0,0.5625}
+\definecolor{dtrsmcolor}{rgb}{0,0,0.8675}
+\begin{columns}\begin{column}{.55\linewidth}\small
+\lstset{frame=bt,numbers=none,basicstyle=\tt\quitesmall,numberstyle=\tt\prettysmall,escapechar=|}\lstinputlisting{cholesky.c}%
+\end{column}\begin{column}{.45\linewidth}
+\includegraphics[width=\linewidth]{img/dag-5x5-crop.pdf}
+\end{column}\end{columns}
+#+END_EXPORT
+
+#+latex: \pause
+
+Um /runtime/ (StarPU) é responsável pelo escalonamento das tarefas
+- Respeita as dependências, faz dados trafegarem
+
+** StarVZ: visualização de rastros de paralelismo de tarefas
+
+Características
+- Análise /post-mortem/, após a finalização da aplicação paralela
+- Possui uma série de paineis de visualização
+- Totalmente baseado no framework de análise =R/tidyverse=
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.38
+:END:
+
+#+attr_latex: :width \linewidth
+[[./img/tidyverse.png]]
+
+*** Right                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.65
+:END:
+
+- Coleção de pacotes \to ciência de dados
+- Compartilham filosofia e gramática
+
+*** Unico                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: {\scriptsize
+A Visual Performance Analysis Framework for Task-based Parallel Applications running on Hybrid Clusters, Vinicius Garcia Pinto, Lucas Mello Schnorr, Luka Stanisic, Arnaud Legrand, Samuel Thibault, Vincent Danjean, in Concurrency and Computation: Practice and Experience, Wiley, 2018, 30 (18), pp.1-31.
+#+latex: }
+
+** StarVZ: Phase 1
+
+1. Aplicação StarPU é executada, gera arquivos =prof_file_X=
+   - Arquivos binários (preocupação com baixa intrusividade)
+2. Executamos =starpu_fxt_tool=, ferramenta para exportar
+3. Executamos então a fase #1 do StarVZ
+   - No cluster \to gerar arquivos de leitura rápida
+   
+#+attr_latex: :width \linewidth
+[[./img/r_analysis_workflow_offline_phase.pdf]]
+
+** StarVZ: Phase 2
+
+1. Dados são normalmente trazidos para o Laptop
+2. Leitura rápida dos dados em formato =parquet=
+3. Paineis de visualização, opção de lidar direto com as tabelas
+   - Construir seu próprio /script/ de análise
+
+#+attr_latex: :width \linewidth
+[[./img/r_analysis_workflow_online_phase.pdf]]
+
+* Exemplos de uso
+** Fatoração de matrizes esparsas QR-Mumps 1/2
+
+https://qr_mumps.gitlab.io/
+
+Árvore de eliminação para guiar o processo de fatoração
+#+attr_latex: :width .9\linewidth
+[[./img/qrmumps-basics.jpg]]
+
+#+latex: {\scriptsize
+Miletto, Marcelo Cogo, et al. "Performance analysis of task-based
+multi-frontal sparse linear solvers: Structure matters." Future
+Generation Computer Systems 135 (2022): 409-425.
+#+latex: }
+
+** Fatoração de matrizes esparsas QR-Mumps 2/2
+
+#+attr_latex: :width .8\linewidth
+[[./img/qrmumps-panels.jpg]]
+
+** Aplicações em cluster com ExaGeoStat sobre StarPU-MPI
+
+https://github.com/ecrc/exageostat
+
+#+attr_latex: :width \linewidth
+[[./img/nesi-async.png]]
+
+#+latex: {\scriptsize
+Asynchronous multi-phase task-based applications: Employing different
+nodes to design better distributions. Future Gener. Comput. Syst. 147:
+119-135 (2023)
+#+latex: }
+
+** Comparação StarPU /versus/ OpenMP                                :noexport:
+
+
 * Conclusão
+** Conclusões
+*** Análise de desempenho mais específica por aplicação    :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+- Sobreposição comunicação/cálculo (MPI, CUDA)
+- Identificação das razões de ociosidade
+- Identificar atrasos de escalonamento
+- *Dar liberdade ao analista de testar cenários /what-if/*
+
+#+latex: \pause
+
+*** Separação clara entre o rastreamento e a análise       :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+- Usando formatos e ferramentas abertas
+- Permitir emprego de técnicas de ciência de dados
+  - Formatos eficientes de leitura /in-memory/
+  - Usar frameworks de aceleração (RAPIDS, PySpark)
+
+#+latex: \pause
+
+*** Favorecer emprego de LLMs/SLMs                         :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+- Construção de code snippets de análise
+
+** Contato
+*** Contato                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+begin_center
+Obrigado pela atenção!
+#+end_center
+
+#+begin_center
+schnorr@inf.ufrgs.br
+#+end_center
+
+*** QrCode                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.3
+:END:
+#+attr_latex: :width \linewidth
+[[./img/qrcode.png]]
+
 * Configuração do EMACS                                            :noexport:
 ** Manual
 
