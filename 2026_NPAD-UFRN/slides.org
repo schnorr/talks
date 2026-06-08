@@ -158,6 +158,127 @@ Ciência da Computação
 - Pós-doutorado no Inria (2016/2017)
 
 * Introdução
+** Análise de Desempenho em HPC: objetivos típicos
+
+Objetivos principais da análise de desempenho
+ 
+#+latex: \vfill\pause
+ 
+Compreender o comportamento da aplicação
+- Identificar *gargalos* de desempenho (CPU, memória, rede, I/O)
+- Entender padrões de *comunicação* entre processos e threads
+- Avaliar o uso dos *recursos computacionais* disponíveis
+ 
+#+latex: \vfill\pause
+ 
+Guiar a otimização
+- Direcionar esforços para as partes de *maior impacto* (/hotspots/)
+- Validar o efeito de *modificações* no código
+- Apoiar decisões de *escalonamento* e configuração de execução
+ 
+#+latex: \vfill\pause
+ 
+Garantir qualidade e reprodutibilidade
+- Produzir análises *reprodutíveis* e verificáveis
+- Comparar desempenho entre diferentes *plataformas*
+- Gerar evidências para *publicações* científicas
+
+** Análise de Desempenho em HPC: o problema
+
+Análise de desempenho de aplicações HPC é *essencial* para uso eficiente dos recursos
+
+#+latex: \vfill\pause
+
+Abordagem tradicional: ferramentas *monolíticas*
+- Pouca capacidade de *expressão* analítica
+- Baixa capacidade de *extensão* e adaptação
+- Dificuldade de integração com fluxos modernos de análise
+
+** Alguns exemplos: Vampir 1/4
+
+#+attr_latex: :width \linewidth
+[[./img/vampir.png]]
+
+#+latex: {\scriptsize
+Williams, William, and Holger Brunst. "Parallel performance
+engineering using Score-P and Vampir." Companion of the 2023 ACM/SPEC
+International Conference on Performance Engineering. 2023.
+#+latex: }
+
+** Alguns exemplos: Scalasca Cube 2/4
+
+#+attr_latex: :width \linewidth
+[[./img/scalasca-cube.png]]
+
+#+latex: {\scriptsize
+Zhukov, Ilya, et al. "Scalasca v2: Back to the future." Tools for High
+Performance Computing 2014: Proceedings of the 8th International
+Workshop on Parallel Tools for High Performance Computing, October
+2014, HLRS, Stuttgart, Germany. Cham: Springer International
+Publishing, 2015.
+#+latex: }
+
+** Alguns exemplos: Triva 3/4
+
+#+attr_latex: :width \linewidth
+[[./img/triva.png]]
+
+#+latex: {\scriptsize
+Schnorr, Lucas Mello, Guillaume Huard, and Philippe OA Navaux. "Triva:
+Interactive 3d visualization for performance analysis of parallel
+applications." Future Generation Computer Systems 26.3 (2010):
+348-358.
+#+latex: }
+
+** Alguns exemplos: Paje 4/4
+
+#+attr_latex: :width \linewidth
+[[./img/paje.png]]
+
+#+latex: {\scriptsize
+Flexible performance visualization of parallel and distributed
+applications.  J. Chassin de Kergommeaux, B. de Oliveira Stein Future
+Generation Computer Systems 19 (2003) 735-747.
+#+latex: }
+
+** Análise de Desempenho em HPC: as consequências
+
+#+begin_export latex
+\includegraphics[width=.23\linewidth]{./img/vampir.png}\hfill%
+\includegraphics[width=.23\linewidth]{./img/scalasca-cube.png}\hfill%
+\includegraphics[width=.23\linewidth]{./img/triva.png}\hfill%
+\includegraphics[width=.23\linewidth]{./img/paje.png}
+#+end_export
+
+#+latex: \vfill
+
+- Análise limitada de *rastros de execução* e perfis de desempenho
+- Ciclo de otimização lento
+- Fificuldade de realizar automações
+  - Por exemplo via LLMs ou SLMs
+  - Ou até via métodos tradicionais de código de análise
+- Pouco reprodutível
+  - Não temos o ``código fonte'' de cada visão específica
+
+** Ciência de Dados como Solução
+
+Surgimento de ferramentas de *ciência de dados* e *big data*
+
+#+latex: \vfill\pause
+
+Novas possibilidades
+- Análise expressiva e flexível de *rastros de execução*
+- Suporte a uma variedade gigante de tipos de aplicações
+  - Tradicional Bulk-Synchronous Parallel (BSP, MPI, MPI+X)
+  - Baseadas em *tarefas* (StarPU, Parsec, OpenMP)
+- Tratamento de desafios de *escalabilidade*
+
+#+latex: \vfill\pause
+
+Além da análise de desempenho
+- *Reprodutibilidade* dos experimentos e análises
+- *Transparência científica* nos resultados
+
 * Conclusão
 * Configuração do EMACS                                            :noexport:
 ** Manual
