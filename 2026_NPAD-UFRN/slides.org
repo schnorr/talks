@@ -1,0 +1,200 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer overview indent
+
+#+TITLE: Ciência de Dados para Análise de Desempenho de Aplicações HPC
+#+AUTHOR: Lucas Mello Schnorr, UFRGS
+#+EMAIL: schnorr@inf.ufrgs.br
+#+DATE: 
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [10pt, xcolor=dvipsnames]
+#+BEAMER_THEME: metropolis [numbering=fraction]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LANGUAGE: pt-br
+#+TAGS: noexport(n) ignore(i)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EXPORT_SELECT_TAGS: export
+#+LATEX_HEADER: \institute{Núcleo de Processamento de Alto Desempenho (NPAD/UFRN) -- 2026}
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \usepackage[backend=bibtex]{biblatex}
+#+LATEX_HEADER: \bibliography{refs.bib}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{palatino}
+#+LATEX_HEADER: %\usepackage{enumitem}
+#+LATEX_HEADER: %\setlist[itemize]{leftmargin=1.2em}
+#+LATEX_HEADER: %O\input{org-babel.tex}
+
+# You need at least Org 9 and Emacs 24 to make this work.
+
+* Dados                                                            :noexport:
+** Título
+Ciência de Dados para Análise de Desempenho de Aplicações HPC
+** Resumo
+
+Historicamente a análise de desempenho de aplicações HPC tem sido
+realizadas com ferramentas monolíticas com pouca capacidade de
+expressão e extensão. Em um passado mais recente, surgem várias
+ferramentas que permitem empregar ferramentas de ciência de dados e
+big data para a análise de rastros de execução e perfis de desempenho
+de aplicações HPC. Esta palestra apresentará o ambiente de análise de
+desempenho do StarVZ especialmente desenvolvimento para aplicações
+baseadas em tarefas (StarPU, Parsec, OpenMP) e desafios de
+escalabilidade. A apresentação dialoga também com mecanismos de
+análise de dados reprodutíveis e de transparência científica.
+
+* Propaganda
+** Coisas adicionais por adicionar                                :noexport:
+- [X] Slides sobre o HPC@UFRGS
+- [X] Perímetros de investigação
+- [X] Plataforma Computacional
+- [ ] Formas de Controle
+** Instituto de Informática em Porto Alegre (RS)
+
+Vista geral de *Porto Alegre* em outubro, do Morro da Glória, 287 metros
+#+latex: \vspace{-.2cm}
+#+attr_latex: :width \linewidth
+[[./img/poa.jpg]]
+
+#+latex: \pause
+
+Vista do centro histórico de *Porto Alegre*, do nível do Guaíba
+#+latex: \vspace{-.2cm}
+#+attr_latex: :width \linewidth
+[[./img/guaiba.jpg]]
+
+#+latex: \pause
+
+#+latex: \vspace{-5cm}
+#+attr_latex: :width .93\linewidth
+[[./img/20260206_092341_fixed.jpg]]
+
+#+BEGIN_CENTER
+Vista dos jardins do *Instituto de Informática*, em fevereiro.
+#+END_CENTER
+
+** Programa de Pós-Graduação em Computação (PPGC)
+
+Site do programa: http://www.inf.ufrgs.br/ppgc/
+
+#+attr_latex: :width .2\linewidth
+[[./img/logo-ppgc-187x118.png]]
+
+Oferece
+- _Mestrado_, entradas semestrais
+  - Para quem quer bolsa, fazer o Poscomp (da SBC)
+- _Doutorado_, entrada com fluxo continuo
+
+#+latex: \vfill\pause
+
+Fatos marcantes
+- Conceito máximo (7) pela CAPES
+- Internacionalização da formação e da investigação
+
+** GPPD - Grupo de Processamento Paralelo e Distribuído
+
+Site do grupo de pesquisa:
+
+http://www.inf.ufrgs.br/gppd/site/
+
+Logo do grupo de pesquisa
+
+#+attr_latex: :width .4\linewidth
+[[./img/gppd-logo.png]]
+
+Eixos principais de investigação
+- *High Performance Computing*
+- Computer Architecture
+- Performance Analysis
+- Cloud Computing
+
+** Parque Computacional de Alto Desempenho (PCAD)
+
+URL: http://pcad.inf.ufrgs.br/
+
+Possui \approx50 nós, \approx1000+ núcleos de CPU e \approx100000+ de GPU
+
+#+attr_latex: :width .75\linewidth
+[[./img/20240819_104551.jpg]]
+
+Localização: /Data Center/ do Instituto de Informática, UFRGS
+
+Temos um GT (Grupo de Trabalho)
+- Formamos alunos no gerenciamento destas plataformas
+- SLURM, NFS, LDAP, ...
+
+** Quem sou eu?
+*** Lucas Mello Schnorr
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+#+latex: \bigskip
+
+Prof. INF/UFRGS & PPGC
+
+[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
+
+schnorr@inf.ufrgs.br
+
+#+attr_latex: :width .5\linewidth
+[[./img/lucas-schnorr.png]]
+
+*** Formação
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+Ciência da Computação
+- Graduação UFSM (2003)
+- Mestrado UFRGS (2005)
+- Doutorado UFRGS co-tutela no INPG, Grenoble, França (2009)
+- Pós-doutorado no CNRS (2010 -- 2012)
+- Pós-doutorado no Inria (2016/2017)
+
+* Introdução
+* Conclusão
+* Configuração do EMACS                                            :noexport:
+** Manual
+
+#+begin_src emacs-lisp :results output :session :exports both
+(add-to-list 'load-path ".")
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
+(setq ispell-local-dictionary "brasileiro")
+(flyspell-mode t)
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-minted-options
+       '(("frame" "lines")
+         ("fontsize" "\\scriptsize")))
+#+end_src
+
+#+RESULTS:
+
+** Local
+
+# Local Variables:
+# eval: (add-to-list 'load-path ".")
+# eval: (require 'ox-extra)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (setq org-latex-listings t)
+# eval: (setq org-latex-packages-alist '(("" "listings")))
+# eval: (setq org-latex-packages-alist '(("" "listingsutf8")))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-packages-alist '(("" "minted")))
+# eval: (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f" "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
+# eval: (setq org-latex-minted-options '(("frame" "lines") ("fontsize" "\\scriptsize")))
+# End:
+
+
+
