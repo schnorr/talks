@@ -96,6 +96,38 @@ Palaiseau, France, June 22nd, 2026\\\vspace{1cm} \\
 - [X] Perímetros de investigação
 - [X] Plataforma Computacional
 - [ ] Formas de Controle
+** Who am I?
+*** Lucas Mello Schnorr
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+#+latex: \bigskip
+
+Prof. INF/UFRGS & PPGC
+
+[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
+
+schnorr@inf.ufrgs.br
+
+#+attr_latex: :width .5\linewidth
+[[./img/lucas-schnorr.png]]
+
+*** Academic Career
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+Computer Science
+- Undergraduate UFSM (2003), Master (2005)
+- Co-advised Phd between UFRGS and INPG, Grenoble, France (2009)
+- CNRS Postdoc (2010 -- 2012)
+- Inria Postdoc (2016/2017)
+
 ** Instituto de Informática em Porto Alegre (RS)
 
 General overview of the *Porto Alegre* city
@@ -169,38 +201,6 @@ Informatics Institute's  /Data Center/, UFRGS
 Work Group
 - Education for HPC DevOps
 - SLURM, NFS, LDAP, ...
-
-** Who am I?
-*** Lucas Mello Schnorr
-:PROPERTIES:
-:BEAMER_col: 0.45
-:BEAMER_opt: [t]
-:BEAMER_env: block
-:END:
-
-#+latex: \bigskip
-
-Prof. INF/UFRGS & PPGC
-
-[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
-
-schnorr@inf.ufrgs.br
-
-#+attr_latex: :width .5\linewidth
-[[./img/lucas-schnorr.png]]
-
-*** Academic Career
-:PROPERTIES:
-:BEAMER_col: 0.45
-:BEAMER_opt: [t]
-:BEAMER_env: block
-:END:
-
-Computer Science
-- Undergraduate UFSM (2003), Master (2005)
-- Co-advised Phd between UFRGS and INPG, Grenoble, France (2009)
-- CNRS Postdoc (2010 -- 2012)
-- Inria Postdoc (2016/2017)
 
 * Introduction
 ** Performance Analysis in HPC: typical objectives
