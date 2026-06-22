@@ -203,6 +203,118 @@ Computer Science
 - Post-doctoral at CNRS (2010 -- 2012)
 - Post-doctoral at Inria (2016/2017)
 
+* Propaganda
+** Coisas adicionais por adicionar                                :noexport:
+- [X] Slides sobre o HPC@UFRGS
+- [X] Perímetros de investigação
+- [X] Plataforma Computacional
+- [ ] Formas de Controle
+** Instituto de Informática em Porto Alegre (RS)
+
+General overview of the *Porto Alegre* city
+#+latex: \vspace{-.2cm}
+#+attr_latex: :width \linewidth
+[[./img/poa.jpg]]
+
+#+latex: \pause
+
+Historic Downtown *Porto Alegre* city
+#+latex: \vspace{-.2cm}
+#+attr_latex: :width \linewidth
+[[./img/guaiba.jpg]]
+
+#+latex: \pause
+
+#+latex: \vspace{-5cm}
+#+attr_latex: :width .93\linewidth
+[[./img/20260206_092341_fixed.jpg]]
+
+#+BEGIN_CENTER
+Informatics Institute gardens
+#+END_CENTER
+
+** Programa de Pós-Graduação em Computação (PPGC)                 :noexport:
+
+Site do programa: http://www.inf.ufrgs.br/ppgc/
+
+#+attr_latex: :width .2\linewidth
+[[./img/logo-ppgc-187x118.png]]
+
+Oferece
+- _Mestrado_, entradas semestrais
+  - Para quem quer bolsa, fazer o Poscomp (da SBC)
+- _Doutorado_, entrada com fluxo continuo
+
+#+latex: \vfill\pause
+
+Fatos marcantes
+- Conceito máximo (7) pela CAPES
+- Internacionalização da formação e da investigação
+
+** GPPD - Parallel and Distributed Processing Group
+
+URL:
+
+http://www.inf.ufrgs.br/gppd/site/
+
+Logo:
+
+#+attr_latex: :width .4\linewidth
+[[./img/gppd-logo.png]]
+
+Main research axis
+- *High Performance Computing*
+- Computer Architecture
+- Performance Analysis
+- Cloud Computing
+
+** Computational Assets (PCAD)
+
+URL: http://pcad.inf.ufrgs.br/
+
+Around \approx50 nós, \approx1000+ CPU cores and \approx100000+ GPU cores
+
+#+attr_latex: :width .75\linewidth
+[[./img/20240819_104551.jpg]]
+
+Informatics Institute's  /Data Center/, UFRGS
+
+Work Group
+- Education for managing these plataforms
+- SLURM, NFS, LDAP, ...
+
+** Who am i?
+*** Lucas Mello Schnorr
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+#+latex: \bigskip
+
+Prof. INF/UFRGS & PPGC
+
+[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
+
+schnorr@inf.ufrgs.br
+
+#+attr_latex: :width .5\linewidth
+[[./img/lucas-schnorr.png]]
+
+*** Academic Career
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+Computer Science
+- Undergraduate UFSM (2003), Master (2005)
+- Co-advised Phd between UFRGS and INPG, Grenoble, France (2009)
+- CNRS Postdoc (2010 -- 2012)
+- Inria Postdoc (2016/2017)
+
 * Introduction
 ** Performance Analysis in HPC: typical objectives
 
