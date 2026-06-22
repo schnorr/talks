@@ -316,7 +316,7 @@ Generation Computer Systems 19 (2003) 735-747.
 
 - Análise limitada de *rastros de execução* e perfis de desempenho
 - Ciclo de otimização lento
-- Fificuldade de realizar automações
+- Dificuldade de realizar automações
   - Por exemplo via LLMs ou SLMs
   - Ou até via métodos tradicionais de código de análise
 - Pouco reprodutível
