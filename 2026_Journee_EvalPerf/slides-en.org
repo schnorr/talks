@@ -18,7 +18,7 @@
 #+begin_export latex
 \institute{
 \\\bigskip
-\textbf{Journée thématique Analyse de performance \\
+\textbf{Journée thématique Analyse de performance GDR C4P \\
 Inria Saclay, batiment Turing, salle Gilles Kahn \\
 Palaiseau, France, June 22nd, 2026\\\vspace{1cm} \\
 \includegraphics[scale=0.12]{./logo/inf-logo-1.0.pdf}\hfill%
