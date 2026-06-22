@@ -272,7 +272,7 @@ Main research axis
 
 URL: http://pcad.inf.ufrgs.br/
 
-Around \approx50 nós, \approx1000+ CPU cores and \approx100000+ GPU cores
+Around \approx50 nodes, \approx1000+ CPU cores and \approx100000+ GPU cores
 
 #+attr_latex: :width .75\linewidth
 [[./img/20240819_104551.jpg]]
@@ -280,10 +280,10 @@ Around \approx50 nós, \approx1000+ CPU cores and \approx100000+ GPU cores
 Informatics Institute's  /Data Center/, UFRGS
 
 Work Group
-- Education for managing these plataforms
+- Education for HPC DevOps
 - SLURM, NFS, LDAP, ...
 
-** Who am i?
+** Who am I?
 *** Lucas Mello Schnorr
 :PROPERTIES:
 :BEAMER_col: 0.45
@@ -448,7 +448,7 @@ Beyond performance analysis
 3. Some recent usage examples
 
 * StarVZ
-** Task Parallelism in StarPU                                     :noexport:
+** Task Parallelism in StarPU
 
 Applications are represented as task graphs
 - Application code is sequential (/Sequential Task Flow/ -- STF)
