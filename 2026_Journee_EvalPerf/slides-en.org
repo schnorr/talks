@@ -490,11 +490,11 @@ nodes to design better distributions. Future Gener. Comput. Syst. 147:
 #+begin_center
 Thank you for your attention!
 
-Thanks for the VISTA EA Team
-#+end_center
-
-#+begin_center
 schnorr@inf.ufrgs.br
+
+#+latex: \vspace{1cm}
+
+Thanks to the VISTA EA Team
 #+end_center
 
 *** QrCode                                                           :BMCOL:
