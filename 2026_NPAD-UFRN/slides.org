@@ -20,7 +20,7 @@
 \\\bigskip
 \textbf{Núcleo de Processamento de Alto Desempenho (NPAD) \\
 Universidade Federal do Rio Grande do Norte (UFRN) \\
-Natal - RN, 10 de junho de 2026\\\bigskip
+Natal - RN, 10 de junho de 2026\\\vspace{1cm}
 \includegraphics[scale=0.12]{./logo/inf-logo-1.0.pdf}\hspace{2cm}%
 \includegraphics[scale=0.17]{./logo/ufrgs.pdf}%
 }}
@@ -87,7 +87,7 @@ Natal - RN, 10 de junho de 2026\\\bigskip
 
 
 #+LATEX: {
-#+LATEX:  \maketitle
+#+LATEX: \maketitle
 #+LATEX: }
 
 * Dados                                                            :noexport:
