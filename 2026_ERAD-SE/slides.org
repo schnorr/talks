@@ -108,6 +108,39 @@ escalabilidade. A apresentação dialoga também com mecanismos de
 análise de dados reprodutíveis e de transparência científica.
 
 * Propaganda
+** Quem sou eu?
+*** Lucas Mello Schnorr
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+#+latex: \bigskip
+
+Prof. INF/UFRGS & PPGC
+
+[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
+
+schnorr@inf.ufrgs.br
+
+#+attr_latex: :width .5\linewidth
+[[./img/lucas-schnorr.png]]
+
+*** Formação
+:PROPERTIES:
+:BEAMER_col: 0.45
+:BEAMER_opt: [t]
+:BEAMER_env: block
+:END:
+
+Ciência da Computação
+- Graduação UFSM (2003)
+- Mestrado UFRGS (2005)
+- Doutorado UFRGS co-tutela no INPG, Grenoble, França (2009)
+- Pós-doutorado no CNRS (2010 -- 2012)
+- Pós-doutorado no Inria (2016/2017)
+
 ** Coisas adicionais por adicionar                                :noexport:
 - [X] Slides sobre o HPC@UFRGS
 - [X] Perímetros de investigação
@@ -146,7 +179,8 @@ Site do programa: http://www.inf.ufrgs.br/ppgc/
 
 Oferece
 - _Mestrado_, entradas semestrais
-  - Para quem quer bolsa, fazer o Poscomp (da SBC)
+  - Para quem quer bolsa, fazer o Poscomp da SBC
+  - Bolsas por projeto, entrar em contato com professores
 - _Doutorado_, entrada com fluxo continuo
 
 #+latex: \vfill\pause
@@ -186,39 +220,6 @@ Localização: /Data Center/ do Instituto de Informática, UFRGS
 Temos um GT (Grupo de Trabalho)
 - Formamos alunos no gerenciamento destas plataformas
 - SLURM, NFS, LDAP, ...
-
-** Quem sou eu?
-*** Lucas Mello Schnorr
-:PROPERTIES:
-:BEAMER_col: 0.45
-:BEAMER_opt: [t]
-:BEAMER_env: block
-:END:
-
-#+latex: \bigskip
-
-Prof. INF/UFRGS & PPGC
-
-[[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
-
-schnorr@inf.ufrgs.br
-
-#+attr_latex: :width .5\linewidth
-[[./img/lucas-schnorr.png]]
-
-*** Formação
-:PROPERTIES:
-:BEAMER_col: 0.45
-:BEAMER_opt: [t]
-:BEAMER_env: block
-:END:
-
-Ciência da Computação
-- Graduação UFSM (2003)
-- Mestrado UFRGS (2005)
-- Doutorado UFRGS co-tutela no INPG, Grenoble, França (2009)
-- Pós-doutorado no CNRS (2010 -- 2012)
-- Pós-doutorado no Inria (2016/2017)
 
 * Introdução
 ** Análise de Desempenho em HPC: objetivos típicos
