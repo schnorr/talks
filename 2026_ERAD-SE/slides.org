@@ -8,7 +8,7 @@
 #+DATE: 
 
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [10pt, xcolor=dvipsnames]
+#+LaTeX_CLASS_OPTIONS: [10pt, xcolor=dvipsnames,aspectratio=169]
 #+BEAMER_THEME: metropolis [numbering=fraction]
 #+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t title:nil
 #+LANGUAGE: pt-br
@@ -111,25 +111,27 @@ análise de dados reprodutíveis e de transparência científica.
 ** Quem sou eu?
 *** Lucas Mello Schnorr
 :PROPERTIES:
-:BEAMER_col: 0.45
+:BEAMER_col: 0.40
 :BEAMER_opt: [t]
 :BEAMER_env: block
 :END:
 
 #+latex: \bigskip
 
-Prof. INF/UFRGS & PPGC
+Professor no INF/UFRGS
+
+Orientador Mestrado e Doutorado
 
 [[http://www.inf.ufrgs.br/~schnorr][http://www.inf.ufrgs.br/~schnorr]]
 
 schnorr@inf.ufrgs.br
 
-#+attr_latex: :width .5\linewidth
+#+attr_latex: :width .4\linewidth
 [[./img/lucas-schnorr.png]]
 
 *** Formação
 :PROPERTIES:
-:BEAMER_col: 0.45
+:BEAMER_col: 0.55
 :BEAMER_opt: [t]
 :BEAMER_env: block
 :END:
@@ -163,9 +165,8 @@ Vista do centro histórico de *Porto Alegre*, do nível do Guaíba
 #+latex: \pause
 
 #+latex: \vspace{-5cm}
-#+attr_latex: :width .93\linewidth
+#+attr_latex: :width .63\linewidth
 [[./img/20260206_092341_fixed.jpg]]
-
 #+BEGIN_CENTER
 Vista dos jardins do *Instituto de Informática*, em fevereiro.
 #+END_CENTER
@@ -183,7 +184,7 @@ Oferece
   - Bolsas por projeto, entrar em contato com professores
 - _Doutorado_, entrada com fluxo continuo
 
-#+latex: \vfill\pause
+#+latex: \vfill
 
 Fatos marcantes
 - Conceito máximo (7) pela CAPES
@@ -212,12 +213,12 @@ URL: http://pcad.inf.ufrgs.br/
 
 Possui \approx50 nós, \approx1000+ núcleos de CPU e \approx100000+ de GPU
 
-#+attr_latex: :width .75\linewidth
+#+attr_latex: :width .55\linewidth
 [[./img/20240819_104551.jpg]]
 
 Localização: /Data Center/ do Instituto de Informática, UFRGS
 
-Temos um GT (Grupo de Trabalho)
+Temos um GT (Grupo de Trabalho) \to DevOps para HPC @ ERAD/RS 2023
 - Formamos alunos no gerenciamento destas plataformas
 - SLURM, NFS, LDAP, ...
 
@@ -260,7 +261,7 @@ Abordagem tradicional: ferramentas *monolíticas*
 
 ** Alguns exemplos: Vampir 1/4
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .7\linewidth
 [[./img/vampir.png]]
 
 #+latex: {\scriptsize
@@ -271,7 +272,7 @@ International Conference on Performance Engineering. 2023.
 
 ** Alguns exemplos: Scalasca Cube 2/4
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .7\linewidth
 [[./img/scalasca-cube.png]]
 
 #+latex: {\scriptsize
@@ -296,7 +297,7 @@ applications." Future Generation Computer Systems 26.3 (2010):
 
 ** Alguns exemplos: Paje 4/4
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .7\linewidth
 [[./img/paje.png]]
 
 #+latex: {\scriptsize
@@ -356,8 +357,7 @@ Além da análise de desempenho
 * StarVZ
 ** Paralelismo de Tarefas no StarPU
 
-Aplicações são representadas por grafo de tarefas
-- Código da aplicação é sequencial (/Sequential Task Flow/ -- STF)
+Aplicação é um grafo de tarefas \to Paradigma /Sequential Task Flow/ -- STF
 
 Exemplo: Fatorização de cholesky por blocos
 
@@ -366,9 +366,9 @@ Exemplo: Fatorização de cholesky por blocos
 \definecolor{dgemmcolor}{rgb}{0,0.5625,0}
 \definecolor{dsyrkcolor}{rgb}{0.5625,0,0.5625}
 \definecolor{dtrsmcolor}{rgb}{0,0,0.8675}
-\begin{columns}\begin{column}{.55\linewidth}\small
+\begin{columns}\begin{column}{.40\linewidth}\small
 \lstset{frame=bt,numbers=none,basicstyle=\tt\quitesmall,numberstyle=\tt\prettysmall,escapechar=|}\lstinputlisting{cholesky.c}%
-\end{column}\begin{column}{.45\linewidth}
+\end{column}\begin{column}{.35\linewidth}
 \includegraphics[width=\linewidth]{img/dag-5x5-crop.pdf}
 \end{column}\end{columns}
 #+END_EXPORT
@@ -390,7 +390,7 @@ Características
 :BEAMER_col: 0.38
 :END:
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .7\linewidth
 [[./img/tidyverse.png]]
 
 *** Right                                                           :BMCOL:
@@ -417,8 +417,10 @@ A Visual Performance Analysis Framework for Task-based Parallel Applications run
 2. Executamos =starpu_fxt_tool=, ferramenta para exportar
 3. Executamos então a fase #1 do StarVZ
    - No cluster \to gerar arquivos de leitura rápida
-   
-#+attr_latex: :width \linewidth
+
+#+latex: \vfill
+
+#+attr_latex: :width .9\linewidth
 [[./img/r_analysis_workflow_offline_phase.pdf]]
 
 ** StarVZ: Phase 2
@@ -428,7 +430,9 @@ A Visual Performance Analysis Framework for Task-based Parallel Applications run
 3. Paineis de visualização, opção de lidar direto com as tabelas
    - Construir seu próprio /script/ de análise
 
-#+attr_latex: :width \linewidth
+#+latex: \vfill
+
+#+attr_latex: :width .9\linewidth
 [[./img/r_analysis_workflow_online_phase.pdf]]
 
 * Exemplos de uso
@@ -437,7 +441,7 @@ A Visual Performance Analysis Framework for Task-based Parallel Applications run
 https://qr_mumps.gitlab.io/
 
 Árvore de eliminação para guiar o processo de fatoração
-#+attr_latex: :width .9\linewidth
+#+attr_latex: :width \linewidth
 [[./img/qrmumps-basics.jpg]]
 
 #+latex: {\scriptsize
@@ -448,14 +452,31 @@ Generation Computer Systems 135 (2022): 409-425.
 
 ** Fatoração de matrizes esparsas QR-Mumps 2/2
 
-#+attr_latex: :width .8\linewidth
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:END:
+#+attr_latex: :width \linewidth
 [[./img/qrmumps-panels.jpg]]
 
+*** Right                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+Seis paineis de análise
+1. Processamento da árvore de eliminação
+2. Intensidade de processamento por nó da árvore
+3. Intensidade de processamento por profundidade da árvore
+4. Quantidade de nós ativos
+5. Quantidade de memória utilizada
+6. Comportamento dos trabalhadores [cores são os tipos de tarefas]
+  
 ** Aplicações em cluster com ExaGeoStat sobre StarPU-MPI
 
 https://github.com/ecrc/exageostat
 
-#+attr_latex: :width \linewidth
+#+attr_latex: :width .85\linewidth
 [[./img/nesi-async.png]]
 
 #+latex: {\scriptsize
@@ -465,8 +486,6 @@ nodes to design better distributions. Future Gener. Comput. Syst. 147:
 #+latex: }
 
 ** Comparação StarPU /versus/ OpenMP                                :noexport:
-
-
 * Conclusão
 ** Conclusões
 *** Análise de desempenho mais específica por aplicação    :B_exampleblock:
